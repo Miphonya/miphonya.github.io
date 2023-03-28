@@ -1,0 +1,65 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  backdrop-filter: blur(5px);
+
+}
+
+html {
+  background-image: url("http://source.unsplash.com/1920x1080?wallpaper");
+  background-repeat: no-repeat;
+  background-size: cover;
+  backdrop-filter: blur(5px);
+
+}
+
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(5px);
+  z-index: 1; /* pour positionner l'élément au-dessous des autres éléments de la page */
+}
+
+.container {
+  margin-top: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 50px;
+  padding: 15px 0; /* pour espacer les conteneurs verticalement */
+  border-radius: 10px; /* pour ajouter des coins arrondis */
+  overflow: hidden; /* pour cacher les coins qui dépassent */
+  position: relative; /* pour que le conteneur soit la référence de position */
+}
+
+.container2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto; /* pour centrer le conteneur horizontalement */
+  padding: 15px 0; /* pour espacer les conteneurs verticalement */
+  border-radius: 10px; /* pour ajouter des coins arrondis */
+  overflow: hidden; /* pour cacher les coins qui dépassent */
+  margin-top: 10px; /* pour ajouter de l'espace entre les deux containers */
+  position: relative; /* pour que le conteneur soit la référence de position */
+}
+
+.image {
+  width: 250px;
+  height: 200px;
+  margin-right: 43px; /* pour espacer les images horizontalement */
+  border-radius: 10px; /* pour ajouter des coins arrondis */
+  overflow: hidden; /* pour cacher les coins qui dépassent */
+  box-shadow: 0 0 5px rgba(0,0,0,0.2); /* pour ajouter une ombre */
+  transition: transform 0.2s ease-in-out; /* pour ajouter une transition lors du survol */
+}
+
+.image:hover {
+  transform: scale(1.1); /* pour agrandir légèrement l'image lors du survol */
+  box-shadow: 0 0 10px #fff; /* pour ajouter une ombre plus prononcée lors du survol */
+}
