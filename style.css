@@ -35,6 +35,7 @@ html {
   border-radius: 10px; /* pour ajouter des coins arrondis */
   overflow: hidden; /* pour cacher les coins qui dépassent */
   position: relative; /* pour que le conteneur soit la référence de position */
+  font-family: 'Ubuntu', sans-serif;
 }
 
 .container2 {
