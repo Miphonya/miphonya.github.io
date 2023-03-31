@@ -1,209 +1,48 @@
 
-// ----------------------------------------------------- MENU  -----------------------------------------------------
+// ----------------------------------------------------- AMORCEUR DE PARAMETTRE  -----------------------------------------------------
 
-
-function toggleMenu() {
-    var menu = document.getElementById("menu");
-    if (menu.style.display === "block") {
-      menu.style.animation = "menu-close 0.3s ease-out";
-      setTimeout(function() {
-        menu.style.display = "none";
-        menu.style.animation = "";
-      }, 300);
-    } else {
-      menu.style.display = "block";
-      menu.style.animation = "menu-open 0.3s ease-out";
-    }
+function loadsettings() {
+  const lang = localStorage.getItem("lang");
+  const searchEngine = localStorage.getItem("searchEngine");
+  if (lang === "fr") {
+      changeLang("fr");
+  } else if (lang === "de") {
+      changeLang("de");
+  } else if (lang === "mw") {
+    changeLang("mw");
+  } else {
+    changeLang("en"); // set default language to English
   }
-  
-  
 
-
-// -----------------------------------------------------  INFOBULLE -----------------------------------------------------
-
-
-var inputElement = document.getElementById("urlImage");
-  var tooltipElement = document.getElementById("tooltip");
-
-  inputElement.addEventListener("input", function() {
-    if (inputElement.value.length > 0) {
-      tooltipElement.style.display = "block";
-      tooltipElement.style.top = (inputElement.offsetTop + inputElement.offsetHeight + 5) + "px";
-      tooltipElement.style.left = inputElement.offsetLeft + "px";
-    } else {
-      tooltipElement.style.display = "none";
-    }
-  });
-
-  inputElement.addEventListener("blur", function() {
-    tooltipElement.style.display = "none";
-  });
-
-
-// -----------------------------------------------------  CUSTOM WALLPAPER -----------------------------------------------------
-
-
-let defaultImage = "http://source.unsplash.com/1920x1080?";
-let nouvelleImage = localStorage.getItem("image_fond");
-
-if (nouvelleImage !== null) {
-  document.querySelector("html").style.backgroundImage = "url('" + defaultImage + nouvelleImage + "')";
-  document.getElementById("urlImage").value = nouvelleImage; // Ajout de cette ligne
-}
-
-function changerImage() {
-  var nouvelleImage = document.getElementById("urlImage").value;
-  if (nouvelleImage !== "") {
-    localStorage.setItem("image_fond", nouvelleImage);
-    document.querySelector("html").style.backgroundImage = "url('" + defaultImage + nouvelleImage + "')";
+  var savedName = localStorage.getItem("nom2");
+  if (savedName !== null) {
+    document.getElementById("savednom").value = savedName;
   }
-  else {
-    localStorage.removeItem("image_fond");
-    document.querySelector("html").style.backgroundImage = "";
+
+  if (searchEngine === "google") {
+      changeSearchEngine("google");
+      document.getElementById("searchEngineSelect").selectedIndex = 0;
+
+  }   else if (searchEngine === "bing") {
+      changeSearchEngine("bing");
+      document.getElementById("searchEngineSelect").selectedIndex = 1;
+
+  }  else if (searchEngine === "brave") {
+      changeSearchEngine("brave");
+      document.getElementById("searchEngineSelect").selectedIndex = 2;
+
+  }  else if (searchEngine === "duckduckgo") {
+     changeSearchEngine("duckduckgo");
+     document.getElementById("searchEngineSelect").selectedIndex = 3;
+  } else {
+     changeSearchEngine("google"); // set default search engine to Google
+     document.getElementById("searchEngineSelect").selectedIndex = 0;
   }
-  document.getElementById("urlImage").value = nouvelleImage; // Ajout de cette ligne
-}
-
-
-
-
-// -----------------------------------------------------  SALUTATIONS -----------------------------------------------------
-
-		
-
-		function autosaveName() {
-			var name = document.getElementById("savednom").value;
-			localStorage.setItem("nom2", name);
-		}
-
-		function showName() {
-			var savedName = localStorage.getItem("nom2");
-			alert("nom2: " + savedName);
-		}
-  
-
-// ------------------------- END NAME SAVER ------------------------------
-
-// ------------------------- fake button ---------------------
-
-function changeColor() {
-  var myButton = document.getElementById("btnname");
-  
-  // Ajoute la classe "clicked" pour changer la couleur du bouton
-  myButton.classList.add("clicked");
-  
-  // Attends 1 secondes avant de supprimer la classe "clicked"
-  setTimeout(function() {
-    myButton.classList.remove("clicked");
-  }, 1000);
-
-}
-
-
-// ------------------------- END PLACEHOLDER ------------------------------
-
-  function afficherMessage() {
-      var nom = localStorage.getItem("nom2");
-      var date = new Date();
-      var heure = date.getHours();
-    
-      var message = "";
-    
-      if (nom != "") {
-        if (heure >= 6 && heure < 12) {
-          if (document.documentElement.lang === "fr") {
-            message = "Bonjour";
-          } else if (document.documentElement.lang === "en") {
-            message = "Good morning";
-          } else if (document.documentElement.lang === "de") {
-            message = "Guten Morgen";
-          } else if (document.documentElement.lang === "mw") {
-            message = "Meowning";
-          }
-        } else if (heure >= 12 && heure < 17) {
-          if (document.documentElement.lang === "fr") {
-            message = "Bon après-midi";
-          } else if (document.documentElement.lang === "en") {
-            message = "Good afternoon";
-          } else if (document.documentElement.lang === "de") {
-            message = "Guten Tag";
-          } else if (document.documentElement.lang === "mw") {
-            message = "Meownoon";
-          }
-        } else {
-          if (document.documentElement.lang === "fr") {
-            message = "Bonsoir";
-          } else if (document.documentElement.lang === "en") {
-            message = "Good evening";
-          } else if (document.documentElement.lang === "de") {
-            message = "Guten Abend";
-          }else if (document.documentElement.lang === "mw") {
-            message = "Meowing";
-          }
-        }
-    
-        message += ", " + nom + ".";
-      }
-    
-      document.getElementById("message").innerHTML = message;
-    }
-    
-    setInterval(afficherMessage, 1000);
-
-// ----------------------------------------------------- MODIFICATION DU MOTEUR -----------------------------------------------------
-
-let placeholderValue = "";
-
-function changeSearchEngine(engine) {
-    const searchForm = document.getElementById("searchForm");
-    if (engine === "google") {
-        searchForm.action = "https://www.google.com/search";
-        placeholderValue = "Google";
-        localStorage.setItem("searchEngine", "google"); // stocker la valeur "google" dans le local storage
-
-    } else if (engine === "bing") {
-        searchForm.action = "https://www.bing.com/search";
-        placeholderValue = "Bing";
-        localStorage.setItem("searchEngine", "bing"); // stocker la valeur "bing" dans le local storage
-
-    } else if (engine === "brave") {
-        searchForm.action = "https://search.brave.com/search";
-        placeholderValue = "Brave Search";
-        localStorage.setItem("searchEngine", "brave"); // stocker la valeur "brave" dans le local storage
-
-    }else if (engine === "duckduckgo") {
-        searchForm.action = "https://duckduckgo.com/";
-        placeholderValue = "DuckDuckGo";
-        localStorage.setItem("searchEngine", "duckduckgo"); // stocker la valeur "DuckDuckGo" dans le local storage
-    }
-
-    // Appeler la fonction changeLang() pour mettre à jour le placeholder
-    changeLang(localStorage.getItem("lang"));
-}
-
-// ----------------------------------------------------- VALIDATION SEARCHBAR -----------------------------------------------------
-
-function validateSearch(event) {
-    var searchInput = document.getElementById("searchBar");
-    if (searchInput.value.trim() === "") {
-        searchInput.classList.add("shake"); // ajouter la classe "shake"
-        setTimeout(function() {
-            searchInput.classList.remove("shake"); // enlever la classe "shake" après 1 seconde
-        }, 1000);
-        searchInput.style.borderColor = "red"; // changer la couleur de fond
-        setTimeout(function() {
-            searchInput.style.borderColor = ""; // enlever la couleur de fond après 1 seconde
-        }, 500);
-        event.preventDefault(); // empêcher l'envoi du formulaire
-        return false;
-    }
-    return true;
 }
 
 
 
 // ----------------------------------------------------- CHANGEUR DE LANGUE -----------------------------------------------------
-
 function changeLang(lang) {
   const searchBar = document.getElementById("searchBar");
   const langSelect = document.getElementById("langSelect");
@@ -280,43 +119,207 @@ function changeLang(lang) {
   });
 }
 
-// ----------------------------------------------------- AMORCEUR DE PARAMETTRE  -----------------------------------------------------
 
-function loadsettings() {
-  const lang = localStorage.getItem("lang");
-  const searchEngine = localStorage.getItem("searchEngine");
-  if (lang === "fr") {
-      changeLang("fr");
-  } else if (lang === "en") {
-      changeLang("en");
-  } else if (lang === "de") {
-      changeLang("de");
-  } else if (lang === "mw") {
-    changeLang("mw");
+// ----------------------------------------------------- MENU  -----------------------------------------------------
+
+
+function toggleMenu() {
+    var menu = document.getElementById("menu");
+    if (menu.style.display === "block") {
+      menu.style.animation = "menu-close 0.3s ease-out";
+      setTimeout(function() {
+        menu.style.display = "none";
+        menu.style.animation = "";
+      }, 300);
+    } else {
+      menu.style.display = "block";
+      menu.style.animation = "menu-open 0.3s ease-out";
+    }
   }
+  
+  
 
-  var savedName = localStorage.getItem("nom2");
-  if (savedName !== null) {
-    document.getElementById("savednom").value = savedName;
+
+// -----------------------------------------------------  INFOBULLE -----------------------------------------------------
+
+
+var inputElement = document.getElementById("urlImage");
+  var tooltipElement = document.getElementById("tooltip");
+
+  inputElement.addEventListener("input", function() {
+    if (inputElement.value.length > 0) {
+      tooltipElement.style.display = "block";
+      tooltipElement.style.top = (inputElement.offsetTop + inputElement.offsetHeight + 5) + "px";
+      tooltipElement.style.left = inputElement.offsetLeft + "px";
+    } else {
+      tooltipElement.style.display = "none";
+    }
+  });
+
+  inputElement.addEventListener("blur", function() {
+    tooltipElement.style.display = "none";
+  });
+
+
+// -----------------------------------------------------  CUSTOM WALLPAPER -----------------------------------------------------
+
+
+let defaultImage = "http://source.unsplash.com/1920x1080?";
+let nouvelleImage = localStorage.getItem("image_fond");
+
+if (nouvelleImage !== null) {
+  document.querySelector("html").style.backgroundImage = "url('" + defaultImage + nouvelleImage + "')";
+  document.getElementById("urlImage").value = nouvelleImage; // Ajout de cette ligne
+}
+
+function changerImage() {
+  var nouvelleImage = document.getElementById("urlImage").value;
+  if (nouvelleImage !== "") {
+    localStorage.setItem("image_fond", nouvelleImage);
+    document.querySelector("html").style.backgroundImage = "url('" + defaultImage + nouvelleImage + "')";
   }
-
-  if (searchEngine === "google") {
-      changeSearchEngine("google");
-      document.getElementById("searchEngineSelect").selectedIndex = 0;
-
-  }   else if (searchEngine === "bing") {
-      changeSearchEngine("bing");
-      document.getElementById("searchEngineSelect").selectedIndex = 1;
-
-  }  else if (searchEngine === "brave") {
-      changeSearchEngine("brave");
-      document.getElementById("searchEngineSelect").selectedIndex = 2;
-
-  }  else if (searchEngine === "duckduckgo") {
-     changeSearchEngine("duckduckgo");
-     document.getElementById("searchEngineSelect").selectedIndex = 3;
- }
+  else {
+    localStorage.removeItem("image_fond");
+    document.querySelector("html").style.backgroundImage = "";
+  }
+  document.getElementById("urlImage").value = nouvelleImage; // Ajout de cette ligne
+}
 
 
+
+
+// -----------------------------------------------------  SALUTATIONS -----------------------------------------------------
+
+		function autosaveName() {
+			var name = document.getElementById("savednom").value;
+			localStorage.setItem("nom2", name);
+		}
+
+		function showName() {
+			var savedName = localStorage.getItem("nom2");
+			alert("nom2: " + savedName);
+		}
+  
+
+// ------------------------- END NAME SAVER ------------------------------
+
+// ------------------------- fake button ---------------------
+
+function changeColor() {
+  var myButton = document.getElementById("btnname");
+  
+  // Ajoute la classe "clicked" pour changer la couleur du bouton
+  myButton.classList.add("clicked");
+  
+  // Attends 1 secondes avant de supprimer la classe "clicked"
+  setTimeout(function() {
+    myButton.classList.remove("clicked");
+  }, 1000);
 
 }
+
+
+// ------------------------- END PLACEHOLDER ------------------------------
+
+function afficherMessage() {
+  var nom = localStorage.getItem("nom2");
+  var date = new Date();
+  var heure = date.getHours();
+
+  var message = "";
+
+  if (nom != null && nom !== "") { // Vérifie si nom n'est pas nul ou vide
+    if (heure >= 6 && heure < 12) {
+      if (document.documentElement.lang === "fr") {
+        message = "Bonjour";
+      } else if (document.documentElement.lang === "en") {
+        message = "Good morning";
+      } else if (document.documentElement.lang === "de") {
+        message = "Guten Morgen";
+      } else if (document.documentElement.lang === "mw") {
+        message = "Meowning";
+      }
+    } else if (heure >= 12 && heure < 17) {
+      if (document.documentElement.lang === "fr") {
+        message = "Bon après-midi";
+      } else if (document.documentElement.lang === "en") {
+        message = "Good afternoon";
+      } else if (document.documentElement.lang === "de") {
+        message = "Guten Tag";
+      } else if (document.documentElement.lang === "mw") {
+        message = "Meownoon";
+      }
+    } else {
+      if (document.documentElement.lang === "fr") {
+        message = "Bonsoir";
+      } else if (document.documentElement.lang === "en") {
+        message = "Good evening";
+      } else if (document.documentElement.lang === "de") {
+        message = "Guten Abend";
+      } else if (document.documentElement.lang === "mw") {
+        message = "Meowing";
+      }
+    }
+
+    message += ", " + nom + ".";
+  }
+
+  document.getElementById("message").innerHTML = message;
+}
+
+setInterval(afficherMessage, 1000);
+
+
+// ----------------------------------------------------- MODIFICATION DU MOTEUR -----------------------------------------------------
+
+let placeholderValue = "";
+
+function changeSearchEngine(engine) {
+    const searchForm = document.getElementById("searchForm");
+    if (engine === "google") {
+        searchForm.action = "https://www.google.com/search";
+        placeholderValue = "Google";
+        localStorage.setItem("searchEngine", "google"); // stocker la valeur "google" dans le local storage
+
+    } else if (engine === "bing") {
+        searchForm.action = "https://www.bing.com/search";
+        placeholderValue = "Bing";
+        localStorage.setItem("searchEngine", "bing"); // stocker la valeur "bing" dans le local storage
+
+    } else if (engine === "brave") {
+        searchForm.action = "https://search.brave.com/search";
+        placeholderValue = "Brave Search";
+        localStorage.setItem("searchEngine", "brave"); // stocker la valeur "brave" dans le local storage
+
+    }else if (engine === "duckduckgo") {
+        searchForm.action = "https://duckduckgo.com/";
+        placeholderValue = "DuckDuckGo";
+        localStorage.setItem("searchEngine", "duckduckgo"); // stocker la valeur "DuckDuckGo" dans le local storage
+    }
+
+    // Appeler la fonction changeLang() pour mettre à jour le placeholder
+    changeLang(localStorage.getItem("lang"));
+}
+
+// ----------------------------------------------------- VALIDATION SEARCHBAR -----------------------------------------------------
+
+function validateSearch(event) {
+    var searchInput = document.getElementById("searchBar");
+    if (searchInput.value.trim() === "") {
+        searchInput.classList.add("shake"); // ajouter la classe "shake"
+        setTimeout(function() {
+            searchInput.classList.remove("shake"); // enlever la classe "shake" après 1 seconde
+        }, 1000);
+        searchInput.style.borderColor = "red"; // changer la couleur de fond
+        setTimeout(function() {
+            searchInput.style.borderColor = ""; // enlever la couleur de fond après 1 seconde
+        }, 500);
+        event.preventDefault(); // empêcher l'envoi du formulaire
+        return false;
+    }
+    return true;
+}
+
+
+
+
