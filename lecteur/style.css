@@ -1,0 +1,103 @@
+/* Style pour le menu */
+#menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0px; /* ajustement de la hauteur */
+  width: 180px; /* diminution de la largeur du menu */
+  background-color: #2b2b2b; /* gris foncé */
+  padding: 10px;
+  border-radius: 10px;
+}
+#menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+#menu ul li {
+  margin-bottom: 10px;
+}
+#menu ul li a {
+  display: block;
+  padding: 5px;
+  background-color: #424242; /* gris plus clair */
+  border: 1px solid #2b2b2b; /* gris foncé */
+  color: #ffffff; /* blanc */
+  text-decoration: none;
+  border-radius: 5px;
+}
+#menu ul li a:hover {
+  background-color: #616161; /* gris plus foncé */
+}
+/* Style pour les sous-menus */
+#menu ul li ul {
+  display: none;
+  margin-left: 20px;
+  margin-top: 5px;
+}
+#menu ul li:hover > ul {
+  display: block;
+}
+#menu ul li ul li {
+  margin-bottom: 5px;
+}
+#menu ul li ul li a {
+  background-color: #5a5a5a;
+  border: 1px solid #424242;
+  border-radius: 3px;
+}
+#menu ul li ul li a:hover {
+  background-color: #747474;
+}
+/* Style pour l'iframe */
+#iframe-container {
+  position: absolute;
+  top: 0;
+  width: auto;
+  height: calc(100% - 20px);
+  position: absolute;
+  right: 0;
+  left: 200px; /* décalage de l'iframe vers la droite */
+  right: 10px; /* ajout d'un petit espace à droite */
+  bottom: 0;
+  border: none;
+  background-color: #3d3d3d; /* gris foncé */
+  border-radius: 10px;
+  padding: 10px;
+}
+iframe {
+  width: 100%; /* ajustement de la largeur */
+  height: 100%; /* ajustement de la hauteur */
+  border-radius: 5px;
+}
+/* Style pour les informations de copyright */
+#copyright {
+  position: absolute;
+  width: 90%;
+  height: auto; /* ajustement de la hauteur */
+  color: #ffffff; /* blanc */
+  font-size: 12px;
+  text-align: center;
+  margin: 0px;
+  bottom: 5px;
+  border-radius: 10px;
+  background-color: #424242; /* gris plus clair */
+  border-top: 1px solid #2b2b2b; /* gris foncé */
+}
+
+#copyright a {
+  color: #ffffff; /* blanc */
+}
+
+#menu-info {
+  position: absolute;
+  width: 90%;
+  height: 35%; /* ajustement de la hauteur */
+  color: #ffffff; /* blanc */
+  font-size: 15px;
+  margin: 0px;
+  bottom: 23%;
+  border-radius: 10px;
+  background-color: #424242; /* gris plus clair */
+  border-top: 1px solid #2b2b2b; /* gris foncé */
+}

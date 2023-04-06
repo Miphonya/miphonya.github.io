@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Menu avec iframe PDF</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+
+<body style="background-color: #4f4f4f;">
+	<div id="menu">
+		<ul>
+<!--
+			<li><a href="#">Livres 1-2</a>
+        <ul>
+					<li><a href="#" data-url="/livres/test.pdf#toolbar=0">Livre 1</a></li>
+					<li><a href="#" data-url="/livres/test.pdf#toolbar=0">Livre 2</a></li>
+				</ul>
+			</li>
+			<li><a href="#" data-url="livres/livre3.pdf">Livre 3</a></li>
+-->
+			<li><a href="#">Document RolePlay [Fondation SCP]</a>
+        		<ul>
+          			<li><a href="#" data-url="livres/RobotBeyond.pdf#toolbar=0">Projet d’unité robotique BeyondLogistique</a></li>
+          			<li><a href="#" data-url="livres/Double05-11.pdf#toolbar=0">Doublure de l'05-11</a></li>
+      			</ul>
+			</li>
+		</ul>
+		<div id="menu-info">
+			<p id="menu-text">Sélectionnez un livre pour afficher son contexte.</p>
+		</div>
+      		<div id="copyright">
+        		<p>Miphonya.ch © 2023, Tous droits réservés.</p>
+        		<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Licence Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a><br />Ces œuvres sont mises à disposition selon les termes de la <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Licence Creative Commons Attribution - Pas d'utilisation Commerciale - Pas de Modification 4.0 International</a>.
+		</div>
+	</div>
+	<div id="iframe-container">
+  		<iframe id="pdf" name="pdf" src="livres/test.pdf#toolbar=0"></iframe>
+	</div>
+  <script src="script.js"></script>
+</body>
+</html>
