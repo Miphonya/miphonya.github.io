@@ -71,7 +71,7 @@ function changeLang(lang) {
     tooltipElement.innerText = "Geben Sie hier EIN wort, um das Hintergrundthema zu ändern. Verwenden Sie für schnellere Ergebnisse gängige englische Wörter wie «Wallpaper». Spezifische Wörter wie «Ente» funktionieren, können jedoch das Laden der Seite verlangsamen, genauso wie Wörter in anderen Sprachen als Englisch. Lassen Sie es leer und speichern Sie es, um es zurückzusetzen.";
     urlImage.placeholder = "Hintergrund ändern"
   } else if (lang === "mw") {
-    
+
     document.documentElement.lang = "mw";
     searchBar.placeholder = "Seow meow " + placeholderValue + "...";
     localStorage.setItem("lang", "mw"); // stocker la langue choisie dans le local storage
@@ -136,8 +136,8 @@ function toggleMenu() {
       menu.style.animation = "menu-open 0.3s ease-out";
     }
   }
-  
-  
+
+
 
 
 // -----------------------------------------------------  INFOBULLE -----------------------------------------------------
@@ -160,17 +160,50 @@ var inputElement = document.getElementById("urlImage");
     tooltipElement.style.display = "none";
   });
 
+  // -----------------------------------------------------  CUSTOM DIMENSION -----------------------------------------------------
+    // Récupération de l'élément select et du choix sauvegardé
+    const resolutionSelect = document.getElementById('resolutionSelect');
+    const savedResolution = localStorage.getItem('resolution');
+
+    // Déclaration de la variable globale pour stocker la résolution de l'image
+    window.imageResolution = "";
+
+    // Si un choix a été sauvegardé, on restaure la valeur sélectionnée
+    if (savedResolution) {
+      resolutionSelect.value = savedResolution;
+    }
+
+    // Restaurer la résolution stockée dans localStorage
+    window.imageResolution = localStorage.getItem('imageResolution');
+
+    // Fonction appelée lorsque l'utilisateur change de résolution
+    function changeResolution(value) {
+  // Choix de la résolution de l'image en fonction de la valeur sélectionnée
+  switch(value) {
+    case "fullhd":
+      window.imageResolution = "http://source.unsplash.com/1920x1080/?";
+      break;
+    case "qhd":
+      window.imageResolution = "http://source.unsplash.com/2560x1440/?";
+      break;
+    case "wqhd":
+      window.imageResolution = "http://source.unsplash.com/3440x1440/?";
+      break;
+    case "quatrek":
+      window.imageResolution = "http://source.unsplash.com/4096x2160/?";
+      break;
+    default:
+      window.imageResolution = "http://source.unsplash.com/1920x1080/?";
+  }
+
+  // Sauvegarde de la résolution choisie et de la résolution de l'image
+  localStorage.setItem('resolution', value);
+  localStorage.setItem('imageResolution', window.imageResolution);
+location.reload()
+}
 
 // -----------------------------------------------------  CUSTOM WALLPAPER -----------------------------------------------------
-
-
-let defaultImage = "http://source.unsplash.com/1920x1080?";
-let nouvelleImage = localStorage.getItem("image_fond");
-
-if (nouvelleImage !== null) {
-  document.querySelector("html").style.backgroundImage = "url('" + defaultImage + nouvelleImage + "')";
-  document.getElementById("urlImage").value = nouvelleImage; // Ajout de cette ligne
-}
+let defaultImage = window.imageResolution;
 
 function changerImage() {
   var nouvelleImage = document.getElementById("urlImage").value;
@@ -180,12 +213,29 @@ function changerImage() {
   }
   else {
     localStorage.removeItem("image_fond");
-    document.querySelector("html").style.backgroundImage = "";
+    document.querySelector("html").style.backgroundImage = "url('" + defaultImage + "wallpaper,landscape" + "')";
   }
-  document.getElementById("urlImage").value = nouvelleImage; // Ajout de cette ligne
+  document.getElementById("urlImage").value = nouvelleImage;
 }
 
+// Appel de la fonction d'initialisation au chargement de la page
+window.addEventListener('load', init);
 
+// Écouteur d'événement pour détecter les changements dans l'input "urlImage"
+document.getElementById("urlImage").addEventListener('input', changerImage);
+
+// Fonction d'initialisation pour restaurer les valeurs stockées dans le localStorage
+function init() {
+  let nouvelleImage = localStorage.getItem("image_fond");
+
+  if (nouvelleImage !== null) {
+    document.querySelector("html").style.backgroundImage = "url('" + defaultImage + nouvelleImage + "')";
+    document.getElementById("urlImage").value = nouvelleImage;
+  } else {
+    localStorage.removeItem("image_fond");
+    document.querySelector("html").style.backgroundImage = "url('" + defaultImage + "wallpaper,landscape" + "')";
+  }
+}
 
 
 // -----------------------------------------------------  SALUTATIONS -----------------------------------------------------
@@ -199,7 +249,7 @@ function changerImage() {
 			var savedName = localStorage.getItem("nom2");
 			alert("nom2: " + savedName);
 		}
-  
+
 
 // ------------------------- END NAME SAVER ------------------------------
 
@@ -207,10 +257,10 @@ function changerImage() {
 
 function changeColor() {
   var myButton = document.getElementById("btnname");
-  
+
   // Ajoute la classe "clicked" pour changer la couleur du bouton
   myButton.classList.add("clicked");
-  
+
   // Attends 1 secondes avant de supprimer la classe "clicked"
   setTimeout(function() {
     myButton.classList.remove("clicked");
@@ -319,7 +369,3 @@ function validateSearch(event) {
     }
     return true;
 }
-
-
-
-

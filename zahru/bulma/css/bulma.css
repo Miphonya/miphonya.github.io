@@ -1,17 +1,18 @@
 html {
-  background-image: url("http://source.unsplash.com/1920x1080?wallpaper");
+  background-size: auto auto;
   background-repeat: no-repeat;
-  background-size: cover;
 }
+
+
 
 
 /* ----------------------- CUTOM WALLPAPER -------------------*/
 
 #urlImage {
   height: 40px;
-  width: 125px;
+  width: 165px;
   margin-top: 6px;
-  border-radius: 5px 0px 0px 5px;
+  border-radius: 5px 5px 5px 5px;
   border: 1px solid #dbdbdb;
   font-size: 14px;
   color: #333;
