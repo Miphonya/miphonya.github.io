@@ -160,82 +160,171 @@ var inputElement = document.getElementById("urlImage");
     tooltipElement.style.display = "none";
   });
 
+
   // -----------------------------------------------------  CUSTOM DIMENSION -----------------------------------------------------
-    // Récupération de l'élément select et du choix sauvegardé
-    const resolutionSelect = document.getElementById('resolutionSelect');
-    const savedResolution = localStorage.getItem('resolution');
+     // Récupération de l'élément select et du choix sauvegardé
+     const resolutionSelect = document.getElementById('resolutionSelect');
+     const savedResolution = localStorage.getItem('resolution');
 
-    // Déclaration de la variable globale pour stocker la résolution de l'image
-    window.imageResolution = "";
+     // Déclaration de la variable globale pour stocker la résolution de l'image
+     window.imageResolution = "";
 
-    // Si un choix a été sauvegardé, on restaure la valeur sélectionnée
-    if (savedResolution) {
-      resolutionSelect.value = savedResolution;
-    }
+     // Si un choix a été sauvegardé, on restaure la valeur sélectionnée
+     if (savedResolution) {
+       resolutionSelect.value = savedResolution;
+     }
 
-    // Restaurer la résolution stockée dans localStorage
-    window.imageResolution = localStorage.getItem('imageResolution');
+     // Restaurer la résolution stockée dans localStorage
+     window.imageResolution = localStorage.getItem('imageResolution');
 
-    // Fonction appelée lorsque l'utilisateur change de résolution
-    function changeResolution(value) {
-  // Choix de la résolution de l'image en fonction de la valeur sélectionnée
-  switch(value) {
-    case "fullhd":
-      window.imageResolution = "http://source.unsplash.com/1920x1080/?";
-      break;
-    case "qhd":
-      window.imageResolution = "http://source.unsplash.com/2560x1440/?";
-      break;
-    case "wqhd":
-      window.imageResolution = "http://source.unsplash.com/3440x1440/?";
-      break;
-    case "quatrek":
-      window.imageResolution = "http://source.unsplash.com/4096x2160/?";
-      break;
-    default:
-      window.imageResolution = "http://source.unsplash.com/1920x1080/?";
-  }
+     // Fonction appelée lorsque l'utilisateur change de résolution
+     function changeResolution(value) {
+       // Choix de la résolution de l'image en fonction de la valeur sélectionnée
+       switch(value) {
+         case "fullhd":
+           window.imageResolution = "http://source.unsplash.com/1920x1080/?";
+           break;
+         case "qhd":
+           window.imageResolution = "http://source.unsplash.com/2560x1440/?";
+           break;
+         case "wqhd":
+           window.imageResolution = "http://source.unsplash.com/3440x1440/?";
+           break;
+         case "quatrek":
+           window.imageResolution = "http://source.unsplash.com/4096x2160/?";
+           break;
+         default:
+           window.imageResolution = "http://source.unsplash.com/1920x1080/?";
+       }
 
-  // Sauvegarde de la résolution choisie et de la résolution de l'image
-  localStorage.setItem('resolution', value);
-  localStorage.setItem('imageResolution', window.imageResolution);
-location.reload()
-}
+       // Sauvegarde de la résolution choisie et de la résolution de l'image
+       localStorage.setItem('resolution', value);
+       localStorage.setItem('imageResolution', window.imageResolution);
 
-// -----------------------------------------------------  CUSTOM WALLPAPER -----------------------------------------------------
-let defaultImage = window.imageResolution;
+       // Modification de l'image de fond avec la nouvelle résolution
+       document.querySelector("html").style.backgroundImage = "url('" + window.imageResolution + "wallpaper,landscape" + "')";
+     }
 
-function changerImage() {
-  var nouvelleImage = document.getElementById("urlImage").value;
-  if (nouvelleImage !== "") {
-    localStorage.setItem("image_fond", nouvelleImage);
-    document.querySelector("html").style.backgroundImage = "url('" + defaultImage + nouvelleImage + "')";
-  }
-  else {
-    localStorage.removeItem("image_fond");
-    document.querySelector("html").style.backgroundImage = "url('" + defaultImage + "wallpaper,landscape" + "')";
-  }
-  document.getElementById("urlImage").value = nouvelleImage;
-}
+ // --------------------------  CUSTOM WALLPAPER + Première visite  --------------------------
 
-// Appel de la fonction d'initialisation au chargement de la page
-window.addEventListener('load', init);
+ // --------------------------  Première visite --------------------------
 
-// Écouteur d'événement pour détecter les changements dans l'input "urlImage"
-document.getElementById("urlImage").addEventListener('input', changerImage);
+ // Vérifier si l'utilisateur a déjà visité le site
+ if (!localStorage.getItem('firstVisit')) {
+   // Afficher un message de bienvenue à l'utilisateur
+ //  alert("Bienvenue sur notre site! C'est votre première visite ici.");
 
-// Fonction d'initialisation pour restaurer les valeurs stockées dans le localStorage
-function init() {
-  let nouvelleImage = localStorage.getItem("image_fond");
+   // Mettre le premier fond d'écran
+   document.querySelector("html").style.backgroundImage = "url('http://source.unsplash.com/1920x1080/?wallpaper')";
 
-  if (nouvelleImage !== null) {
-    document.querySelector("html").style.backgroundImage = "url('" + defaultImage + nouvelleImage + "')";
-    document.getElementById("urlImage").value = nouvelleImage;
-  } else {
-    localStorage.removeItem("image_fond");
-    document.querySelector("html").style.backgroundImage = "url('" + defaultImage + "wallpaper,landscape" + "')";
-  }
-}
+   // Créer un élément carré avec du texte, deux selects et des options à l'intérieur
+   var square = document.createElement("div");
+   square.id = "square";
+   square.innerHTML = `
+
+ <div>
+ <div>
+  <a id=textzahru>ZahRu<a>
+  	<img class="hi-hand" src="assets/other/wave-hello.gif" alt="wave-hello" onclick="toggleMenu()">
+ <br>
+     <div class="select">
+       <select id="langSelect" onchange="changeLang(this.value)">
+         <option value="en">💂‍♀️English</option>
+         <option value="fr">🥖Français</option>
+         <option value="de">🍺Deutch</option>
+         <option value="mw">🐱Meowguage</option>
+       </select>
+     </div>
+ </div>
+   <br>
+ <div>
+ <!--	<a> Quel moteur de recherche utilisez vous ?</a>  <br>-->
+     <div class="select">
+       <select id="searchEngineSelect" onchange="changeSearchEngine(this.value)">
+         <option value="google">🤖Google</option>
+         <option value="bing">🔎Bing</option>
+         <option value="brave">🦁Brave Search</option>
+         <option value="duckduckgo">🦆DuckDuckGo</option>
+       </select>
+     </div>
+ </div>
+   <br>
+ <div>
+ <!--    <a> Quel résolution souhaitez vous utilisez ? </a> <br>
+  <a> Plus la résolution est haute, plus le temps de chargement est élevé, mais il peut être néssésaire d'utilisez des résolutions plus élvever pour evité les bords blanc sur sertain éran.</a>
+   <br>  -->
+   <div class="select">
+       <select id="resolutionSelect" onchange="changeResolution(this.value)">
+         <option value="fullhd">📼 FullHD (🚴‍♀️)</option>
+         <option value="qhd">🎞 QHD (🏃‍♀️)</option>
+         <option value="wqhd">📺 WQHD (‍🚶‍♀️)</option>
+         <option value="quatrek">🖥 4K(🐌)</option>
+       </select>
+     </div>
+ </div>
+
+     <button onclick="welcomsaver()">OK !</button>
+ </div>
+   `;
+
+   // Ajouter l'élément carré à la page
+   document.body.appendChild(square);
+
+
+
+ } else {
+
+   // --------------------------  déjà visité ( fond ecran)  --------------------------
+
+   // Afficher un message de remerciement à l'utilisateur
+ //  alert("Merci de visiter notre site à nouveau.");
+
+   // Définir l'image de fond par défaut
+   var defaultImage = "http://source.unsplash.com/1920x1080/?";
+
+   function changerImage() {
+     var nouvelleImage = document.getElementById("urlImage").value;
+     if (nouvelleImage !== "") {
+       localStorage.setItem("image_fond", nouvelleImage);
+       document.querySelector("html").style.backgroundImage = "url('" + defaultImage + nouvelleImage + "')";
+     }
+     else {
+       localStorage.removeItem("image_fond");
+       document.querySelector("html").style.backgroundImage = "url('" + defaultImage + "wallpaper,landscape" + "')";
+     }
+     document.getElementById("urlImage").value = nouvelleImage;
+   }
+
+   // Appel de la fonction d'initialisation au chargement de la page
+   window.addEventListener('load', init);
+
+   // Écouteur d'événement pour détecter les changements dans l'input "urlImage"
+   document.getElementById("urlImage").addEventListener('input', changerImage);
+
+ // Fonction d'initialisation pour restaurer les valeurs stockées dans le localStorage
+ function init() {
+   let nouvelleImage = localStorage.getItem("image_fond");
+
+   if (nouvelleImage !== null) {
+     document.querySelector("html").style.backgroundImage = "url('" + defaultImage + nouvelleImage + "')";
+     document.getElementById("urlImage").value = nouvelleImage;
+   } else {
+     localStorage.removeItem("image_fond");
+     document.querySelector("html").style.backgroundImage = "url('" + defaultImage + "wallpaper,landscape" + "')";
+   }
+ }
+ }
+
+ // -----------------------------------------------------  welcomsaver -----------------------------------------------------
+
+ function welcomsaver() {
+   // Enregistrer la visite de l'utilisateur dans le stockage local
+   localStorage.setItem("firstVisit", true);
+   square.style.display = "none";
+ }
+
+
+
 
 
 // -----------------------------------------------------  SALUTATIONS -----------------------------------------------------
