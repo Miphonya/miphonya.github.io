@@ -1,109 +1,87 @@
 
 // ----------------------------------------------------- AMORCEUR DE PARAMETTRE  -----------------------------------------------------
-
 function loadsettings() {
+  // Récupère la valeur de la clé "lang" dans l'objet localStorage
   const lang = localStorage.getItem("lang");
+  // Récupère la valeur de la clé "searchEngine" dans l'objet localStorage
   const searchEngine = localStorage.getItem("searchEngine");
-  if (lang === "fr") {
-      changeLang("fr");
-  } else if (lang === "de") {
-      changeLang("de");
-  } else if (lang === "mw") {
-    changeLang("mw");
-  } else {
-    changeLang("en"); // set default language to English
-  }
 
-  var savedName = localStorage.getItem("nom2");
-  if (savedName !== null) {
-    document.getElementById("savednom").value = savedName;
-  }
+  // Déclare un tableau d'options pour la langue
+  const langOptions = ["fr", "de", "mw", "en"];
+  // Déclare un tableau d'options pour les moteurs de recherche
+  const searchEngineOptions = ["google", "bing", "brave", "duckduckgo"];
 
-  if (searchEngine === "google") {
-      changeSearchEngine("google");
-      document.getElementById("searchEngineSelect").selectedIndex = 0;
+  // Change la langue actuelle en fonction de la valeur récupérée ou utilise la langue par défaut "en"
+  changeLang(langOptions.includes(lang) ? lang : "en");
+  // Change le moteur de recherche actuel en fonction de la valeur récupérée ou utilise le moteur de recherche par défaut "google"
+  changeSearchEngine(searchEngineOptions.includes(searchEngine) ? searchEngine : "google");
 
-  }   else if (searchEngine === "bing") {
-      changeSearchEngine("bing");
-      document.getElementById("searchEngineSelect").selectedIndex = 1;
+  // Récupère la valeur de la clé "nom2" de l'objet localStorage et l'assigne à l'élément d'ID "savednom"
+  document.getElementById("savednom").value = localStorage.getItem("nom2") || "";
 
-  }  else if (searchEngine === "brave") {
-      changeSearchEngine("brave");
-      document.getElementById("searchEngineSelect").selectedIndex = 2;
-
-  }  else if (searchEngine === "duckduckgo") {
-     changeSearchEngine("duckduckgo");
-     document.getElementById("searchEngineSelect").selectedIndex = 3;
-  } else {
-     changeSearchEngine("google"); // set default search engine to Google
-     document.getElementById("searchEngineSelect").selectedIndex = 0;
-  }
+  // Sélectionne l'index du moteur de recherche actuel dans la liste déroulante en fonction de sa valeur récupérée
+  document.getElementById("searchEngineSelect").selectedIndex = searchEngineOptions.indexOf(searchEngine);
 }
-
-
-
 // ----------------------------------------------------- CHANGEUR DE LANGUE -----------------------------------------------------
+
 function changeLang(lang) {
+  // Définit un objet contenant les options de langue pour chaque langue disponible
+  const langOptions = {
+    fr: {
+      placeholder: "Rechercher sur ",
+      tooltip: "Entrez ici UN mot pour changer le thème du fond. Pour des résultats plus rapides, utilisez des mots courants en anglais tels que «Wallpaper». Les mots spécifiques comme «Duck» fonctionnent, mais ils peuvent ralentir le chargement de la page, tout comme les mots dans d'autres langues que l'anglais. Laissez vide et enregistrer pour réinitialiser.",
+      urlPlaceholder: "Modifier le fond",
+      title: "Nouvel onglet",
+      savednomPlaceholder: "Quel est votre nom ?"
+    },
+    en: {
+      placeholder: "Search on ",
+      tooltip: "Enter ONE word here to change the background theme. For faster results, use common English words such as «Wallpaper». Specific words like «Duck» will work, but they may slow down the page loading, as will words in languages other than English. Leave it blank and save to reset.",
+      urlPlaceholder: "Change background",
+      title: "New tab",
+      savednomPlaceholder: "What is your name ?"
+    },
+    de: {
+      placeholder: "Suche auf ",
+      tooltip: "Geben Sie hier EIN wort, um das Hintergrundthema zu ändern. Verwenden Sie für schnellere Ergebnisse gängige englische Wörter wie «Wallpaper». Spezifische Wörter wie «Ente» funktionieren, können jedoch das Laden der Seite verlangsamen, genauso wie Wörter in anderen Sprachen als Englisch. Lassen Sie es leer und speichern Sie es, um es zurückzusetzen.",
+      urlPlaceholder: "Hintergrund ändern",
+      title: "Neue Registerkarte",
+      savednomPlaceholder: "Wie ist Ihr Name ?"
+    },
+    mw: {
+      placeholder: "Seow meow ",
+      tooltip: "Type ONE meow meeeow to meowify the meackground meow. For meowtasticly fast meosult, use commeoon English meows such as «Wallpaper». Spesimeow meows like «Duck» will alsmeow , but theow may meowder the meage meowding time, just meow meows in other meowguage meosides English. Leave it meowpty and meow the saveow button to reset. Meow meow!",
+      urlPlaceholder: "Meeoooww meow moew ",
+      title: "Meeow meowglet",
+      savednomPlaceholder: "Weom meow meow ?"
+    }
+  };
+
+  // Récupère les éléments HTML nécessaires
   const searchBar = document.getElementById("searchBar");
   const langSelect = document.getElementById("langSelect");
   const inputElement = document.getElementById("urlImage");
   const tooltipElement = document.getElementById("tooltip");
 
-  if (lang === "fr") {
-    document.documentElement.lang = "fr";
-    searchBar.placeholder = "Rechercher sur " + placeholderValue + "...";
-    localStorage.setItem("lang", "fr"); // stocker la langue choisie dans le local storage
-    langSelect.selectedIndex = 0; // ajouter l'attribut "selected" à l'option française
-    tooltipElement.innerText = "Entrez ici UN mot pour changer le thème du fond. Pour des résultats plus rapides, utilisez des mots courants en anglais tels que «Wallpaper». Les mots spécifiques comme «Duck» fonctionnent, mais ils peuvent ralentir le chargement de la page, tout comme les mots dans d'autres langues que l'anglais. Laissez vide et enregistrer pour réinitialiser.";
-    urlImage.placeholder = "Modifier le fond"
-  } else if (lang === "en") {
-    document.documentElement.lang = "en";
-    searchBar.placeholder = "Search on " + placeholderValue + "...";
-    localStorage.setItem("lang", "en"); // stocker la langue choisie dans le local storage
-    langSelect.selectedIndex = 1; // ajouter l'attribut "selected" à l'option anglaise
-    tooltipElement.innerText = "Enter ONE word here to change the background theme. For faster results, use common English words such as «Wallpaper». Specific words like «Duck» will work, but they may slow down the page loading, as will words in languages other than English. Leave it blank and save to reset.";
-    urlImage.placeholder = "Change background"
-  } else if (lang === "de") {
-    document.documentElement.lang = "de";
-    searchBar.placeholder = "Suche auf " + placeholderValue + "...";
-    localStorage.setItem("lang", "de"); // stocker la langue choisie dans le local storage
-    langSelect.selectedIndex = 2; // ajouter l'attribut "selected" à l'option allemande
-    tooltipElement.innerText = "Geben Sie hier EIN wort, um das Hintergrundthema zu ändern. Verwenden Sie für schnellere Ergebnisse gängige englische Wörter wie «Wallpaper». Spezifische Wörter wie «Ente» funktionieren, können jedoch das Laden der Seite verlangsamen, genauso wie Wörter in anderen Sprachen als Englisch. Lassen Sie es leer und speichern Sie es, um es zurückzusetzen.";
-    urlImage.placeholder = "Hintergrund ändern"
-  } else if (lang === "mw") {
+  // Définit la langue de la page HTML
+  document.documentElement.lang = lang;
+  // Change le placeholder du champ de recherche en fonction de la langue choisie
+  searchBar.placeholder = langOptions[lang].placeholder + placeholderValue + "...";
+  // Enregistre la langue choisie dans l'objet localStorage
+  localStorage.setItem("lang", lang);
+  // Sélectionne la langue choisie dans la liste déroulante
+  langSelect.selectedIndex = Object.keys(langOptions).indexOf(lang);
+  // Change le texte du tooltip en fonction de la langue choisie
+  tooltipElement.innerText = langOptions[lang].tooltip;
+  // Change le placeholder de l'input pour changer l'image de fond en fonction de la langue choisie
+  urlImage.placeholder = langOptions[lang].urlPlaceholder;
 
-    document.documentElement.lang = "mw";
-    searchBar.placeholder = "Seow meow " + placeholderValue + "...";
-    localStorage.setItem("lang", "mw"); // stocker la langue choisie dans le local storage
-    langSelect.selectedIndex = 3; // ajouter l'attribut "selected" à l'option mw
-    tooltipElement.innerText = "Type ONE meow meeeow to meowify the meackground meow. For meowtasticly fast meosult, use commeoon English meows such as «Wallpaper». Spesimeow meows like «Duck» will alsmeow , but theow may meowder the meage meowding time, just meow meows in other meowguage meosides English. Leave it meowpty and meow the saveow button to reset. Meow meow!";
-    urlImage.placeholder = "Meeoooww meow moew "
-  }
+  // Change le placeholder du champ "savednom" en fonction de la langue choisie
+  document.getElementById("savednom").placeholder = langOptions[lang].savednomPlaceholder;
+  // Change le titre de la page en fonction de la langue choisie
+  document.title = langOptions[lang].title;
 
-  if (document.documentElement.lang === "fr") {
-    document.getElementById("savednom").placeholder = "Quel est votre nom ?";
-  } else if (document.documentElement.lang === "en") {
-    document.getElementById("savednom").placeholder = "What is your name ?";
-  } else if (document.documentElement.lang === "de") {
-    document.getElementById("savednom").placeholder = "Wie ist Ihr Name ?";
-  } else if (document.documentElement.lang === "mw") {
-    document.getElementById("savednom").placeholder = "Weom meow meow ?";
-  }
-
-  if (lang === "fr") {
-    document.title = "Nouvel onglet";
-    // ...
-  } else if (lang === "en") {
-    document.title = "New tab";
-    // ...
-  } else if (lang === "de") {
-    document.title = "Neue Registerkarte";
-    // ...
-  } else if (lang === "mw") {
-    document.title = "Meeow meowglet";
-    // ...
-  }
-
+  // Ajoute un événement pour afficher un tooltip lorsque l'utilisateur saisit un texte dans le champ de modification d'image de fond
   inputElement.addEventListener("input", function () {
     if (inputElement.value.length > 0) {
       tooltipElement.style.display = "block";
@@ -114,169 +92,167 @@ function changeLang(lang) {
     }
   });
 
+  // Ajoute un événement pour masquer le tooltip lorsque l'utilisateur quitte le champ de modification d'image de fond
   inputElement.addEventListener("blur", function () {
     tooltipElement.style.display = "none";
   });
 }
 
-
 // ----------------------------------------------------- MENU  -----------------------------------------------------
-
-
+// Cette fonction permet de basculer l'affichage du menu en fonction de son état actuel
 function toggleMenu() {
-    var menu = document.getElementById("menu");
-    if (menu.style.display === "block") {
-      menu.style.animation = "menu-close 0.3s ease-out";
-      setTimeout(function() {
-        menu.style.display = "none";
-        menu.style.animation = "";
-      }, 300);
-    } else {
-      menu.style.display = "block";
-      menu.style.animation = "menu-open 0.3s ease-out";
-    }
+  // Récupère l'élément menu par son id
+  const menu = document.getElementById("menu");
+  // Si le menu est actuellement affiché
+  if (menu.style.display === "block") {
+    // Animer la fermeture du menu
+    menu.style.animation = "menu-close 0.3s ease-out";
+    // Attendre 300ms pour s'assurer que l'animation de fermeture est terminée
+    setTimeout(() => {
+      // Cacher le menu
+      menu.style.display = "none";
+      // Réinitialiser l'animation du menu
+      menu.style.animation = "";
+    }, 300);
+  } else {
+    // Afficher le menu
+    menu.style.display = "block";
+    // Animer l'ouverture du menu
+    menu.style.animation = "menu-open 0.3s ease-out";
   }
-
-
-
+}
 
 // -----------------------------------------------------  INFOBULLE -----------------------------------------------------
+// Récupération des éléments HTML
+const inputElement = document.getElementById("urlImage");
+const tooltipElement = document.getElementById("tooltip");
 
-
-var inputElement = document.getElementById("urlImage");
-  var tooltipElement = document.getElementById("tooltip");
-
-  inputElement.addEventListener("input", function() {
-    if (inputElement.value.length > 0) {
-      tooltipElement.style.display = "block";
-      tooltipElement.style.top = (inputElement.offsetTop + inputElement.offsetHeight + 5) + "px";
-      tooltipElement.style.left = inputElement.offsetLeft + "px";
-    } else {
-      tooltipElement.style.display = "none";
-    }
-  });
-
-  inputElement.addEventListener("blur", function() {
+// Fonction pour gérer l'affichage de la tooltip en fonction de la saisie utilisateur
+function handleInput() {
+  if (inputElement.value.length > 0) {
+    tooltipElement.style.display = "block";
+    tooltipElement.style.top = (inputElement.offsetTop + inputElement.offsetHeight + 5) + "px";
+    tooltipElement.style.left = inputElement.offsetLeft + "px";
+  } else {
     tooltipElement.style.display = "none";
-  });
+  }
+}
 
+// Fonction pour masquer la tooltip
+function hideTooltip() {
+  tooltipElement.style.display = "none";
+}
 
-  // -----------------------------------------------------  CUSTOM DIMENSION -----------------------------------------------------
-     // Récupération de l'élément select et du choix sauvegardé
-     const resolutionSelect = document.getElementById('resolutionSelect');
-     const savedResolution = localStorage.getItem('resolution');
+// Ajout des écouteurs d'événements
+inputElement.addEventListener("input", handleInput);
+inputElement.addEventListener("blur", hideTooltip);
 
-     // Déclaration de la variable globale pour stocker la résolution de l'image
-     window.imageResolution = "";
+// -----------------------------------------------------  #CUSTOM DIMENSION -----------------------------------------------------
+// Récupération de l'élément select et du choix sauvegardé
+const resolutionSelect = document.getElementById('resolutionSelect');
+const savedResolution = localStorage.getItem('resolution');
 
-     // Si un choix a été sauvegardé, on restaure la valeur sélectionnée
-     if (savedResolution) {
-       resolutionSelect.value = savedResolution;
-     }
+// Initialisation de la résolution de l'image avec la valeur sauvegardée ou la valeur par défaut
+let imageResolution = localStorage.getItem('imageResolution') || "http://source.unsplash.com/1920x1080/?";
 
-     // Restaurer la résolution stockée dans localStorage
-     window.imageResolution = localStorage.getItem('imageResolution');
+// Si un choix a été sauvegardé, on restaure la valeur sélectionnée
+if (savedResolution) {
+resolutionSelect.value = savedResolution;
+}
 
-     // Fonction appelée lorsque l'utilisateur change de résolution
-     function changeResolution(value) {
-       // Choix de la résolution de l'image en fonction de la valeur sélectionnée
-       switch(value) {
-         case "fullhd":
-           window.imageResolution = "http://source.unsplash.com/1920x1080/?";
-           break;
-         case "qhd":
-           window.imageResolution = "http://source.unsplash.com/2560x1440/?";
-           break;
-         case "wqhd":
-           window.imageResolution = "http://source.unsplash.com/3440x1440/?";
-           break;
-         case "quatrek":
-           window.imageResolution = "http://source.unsplash.com/4096x2160/?";
-           break;
-         default:
-           window.imageResolution = "http://source.unsplash.com/1920x1080/?";
-       }
+// Fonction appelée lorsque l'utilisateur change de résolution
+function changeResolution(value) {
+// Choix de la résolution de l'image en fonction de la valeur sélectionnée
+switch(value) {
+case "fullhd":
+  imageResolution = "http://source.unsplash.com/1920x1080/?";
+  break;
+case "qhd":
+  imageResolution = "http://source.unsplash.com/2560x1440/?";
+  break;
+case "wqhd":
+  imageResolution = "http://source.unsplash.com/3440x1440/?";
+  break;
+case "quatrek":
+  imageResolution = "http://source.unsplash.com/4096x2160/?";
+  break;
+default:
+  imageResolution = "http://source.unsplash.com/1920x1080/?";
+}
 
-       // Sauvegarde de la résolution choisie et de la résolution de l'image
-       localStorage.setItem('resolution', value);
-       localStorage.setItem('imageResolution', window.imageResolution);
+// Sauvegarde de la résolution choisie et de la résolution de l'image
+localStorage.setItem('resolution', value);
+localStorage.setItem('imageResolution', imageResolution);
 
-       // Modification de l'image de fond avec la nouvelle résolution
-       document.querySelector("html").style.backgroundImage = "url('" + window.imageResolution + "wallpaper,landscape" + "')";
-     }
+// Modification de l'image de fond avec la nouvelle résolution
+document.documentElement.style.backgroundImage = `url('${imageResolution}wallpaper,landscape')`;
+}
+
+// Appel initial de la fonction pour mettre à jour l'image de fond
+changeResolution(savedResolution || "fullhd");
+
 
  // --------------------------  CUSTOM WALLPAPER + Première visite  --------------------------
-
  // --------------------------  Première visite --------------------------
-
  // Vérifier si l'utilisateur a déjà visité le site
  if (!localStorage.getItem('firstVisit')) {
    // Afficher un message de bienvenue à l'utilisateur
- //  alert("Bienvenue sur notre site! C'est votre première visite ici.");
+   // alert("Bienvenue sur notre site! C'est votre première visite ici.");
 
    // Mettre le premier fond d'écran
-   document.querySelector("html").style.backgroundImage = "url('http://source.unsplash.com/1920x1080/?wallpaper')";
+   document.documentElement.style.backgroundImage = "url('http://source.unsplash.com/1920x1080/?wallpaper')";
 
    // Créer un élément carré avec du texte, deux selects et des options à l'intérieur
-   var square = document.createElement("div");
+   const square = document.createElement("div");
    square.id = "square";
    square.innerHTML = `
-
- <div>
- <div>
-  <a id=textzahru>ZahRu<a>
-  	<img class="hi-hand" src="assets/other/wave-hello.gif" alt="wave-hello" onclick="toggleMenu()">
- <br>
-     <div class="select">
-       <select id="langSelect" onchange="changeLang(this.value)">
-         <option value="en">💂‍♀️English</option>
-         <option value="fr">🥖Français</option>
-         <option value="de">🍺Deutch</option>
-         <option value="mw">🐱Meowguage</option>
-       </select>
+     <div>
+       <div>
+         <a id="textzahru">ZahRu</a>
+         <img class="hi-hand" src="assets/other/wave-hello.gif" alt="wave-hello" onclick="toggleMenu()">
+         <br>
+         <div class="select">
+           <select id="langSelect" onchange="changeLang(this.value)">
+             <option value="en">💂‍♀️English</option>
+             <option value="fr">🥖Français</option>
+             <option value="de">🍺Deutch</option>
+             <option value="mw">🐱Meowguage</option>
+           </select>
+         </div>
+       </div>
+       <br>
+       <div>
+         <div class="select">
+           <select id="searchEngineSelect" onchange="changeSearchEngine(this.value)">
+             <option value="google">🤖Google</option>
+             <option value="bing">🔎Bing</option>
+             <option value="brave">🦁Brave Search</option>
+             <option value="duckduckgo">🦆DuckDuckGo</option>
+           </select>
+         </div>
+       </div>
+       <br>
+       <div>
+         <div class="select">
+           <select id="resolutionSelect" onchange="changeResolution(this.value)">
+             <option value="fullhd">📼 FullHD (⚡⚡⚡⚡)</option>
+             <option value="qhd">🎞 QHD (⚡⚡⚡)</option>
+             <option value="wqhd">📺 WQHD (‍⚡⚡)</option>
+             <option value="quatrek">🖥 4K(⚡)</option>
+           </select>
+         </div>
+       </div>
+       <br>
+       <button class="button is-medium" onclick="welcomsaver()">OK !</button>
      </div>
- </div>
-   <br>
- <div>
- <!--	<a> Quel moteur de recherche utilisez vous ?</a>  <br>-->
-     <div class="select">
-       <select id="searchEngineSelect" onchange="changeSearchEngine(this.value)">
-         <option value="google">🤖Google</option>
-         <option value="bing">🔎Bing</option>
-         <option value="brave">🦁Brave Search</option>
-         <option value="duckduckgo">🦆DuckDuckGo</option>
-       </select>
-     </div>
- </div>
-   <br>
- <div>
- <!--    <a> Quel résolution souhaitez vous utilisez ? </a> <br>
-  <a> Plus la résolution est haute, plus le temps de chargement est élevé, mais il peut être néssésaire d'utilisez des résolutions plus élvever pour evité les bords blanc sur sertain éran.</a>
-   <br>  -->
-   <div class="select">
-       <select id="resolutionSelect" onchange="changeResolution(this.value)">
-         <option value="fullhd">📼 FullHD (🚴‍♀️)</option>
-         <option value="qhd">🎞 QHD (🏃‍♀️)</option>
-         <option value="wqhd">📺 WQHD (‍🚶‍♀️)</option>
-         <option value="quatrek">🖥 4K(🐌)</option>
-       </select>
-     </div>
- </div>
-
-     <button onclick="welcomsaver()">OK !</button>
- </div>
    `;
 
    // Ajouter l'élément carré à la page
    document.body.appendChild(square);
-
-
-
  } else {
 
-   // --------------------------  déjà visité ( fond ecran)  --------------------------
-
-   // Afficher un message de remerciement à l'utilisateur
+// --------------------------  #déjà visité ( fond ecran)  --------------------------
+  // Afficher un message de remerciement à l'utilisateur
  //  alert("Merci de visiter notre site à nouveau.");
 
    // Définir l'image de fond par défaut
@@ -316,99 +292,83 @@ var inputElement = document.getElementById("urlImage");
  }
 
  // -----------------------------------------------------  welcomsaver -----------------------------------------------------
-
  function welcomsaver() {
    // Enregistrer la visite de l'utilisateur dans le stockage local
    localStorage.setItem("firstVisit", true);
+   // Fait disparaitre le carré de bienvenue
    square.style.display = "none";
  }
 
-
-
-
-
 // -----------------------------------------------------  SALUTATIONS -----------------------------------------------------
+// Définition de constantes pour les salutations en différentes langues
+const BONJOUR_FR = "Bonjour";
+const BONJOUR_EN = "Good morning";
+const BONJOUR_DE = "Guten Morgen";
+const BONJOUR_MW = "Meowning";
 
-		function autosaveName() {
-			var name = document.getElementById("savednom").value;
-			localStorage.setItem("nom2", name);
-		}
+const BON_APRES_MIDI_FR = "Bon après-midi";
+const BON_APRES_MIDI_EN = "Good afternoon";
+const BON_APRES_MIDI_DE = "Guten Tag";
+const BON_APRES_MIDI_MW = "Meownoon";
 
-		function showName() {
-			var savedName = localStorage.getItem("nom2");
-			alert("nom2: " + savedName);
-		}
+const BONSOIR_FR = "Bonsoir";
+const BONSOIR_EN = "Good evening";
+const BONSOIR_DE = "Guten Abend";
+const BONSOIR_MW = "Meowing";
 
+// Récupération des éléments HTML avec lesquels on va travailler
+const inputNom = document.getElementById("savednom");
+const messageEl = document.getElementById("message");
 
-// ------------------------- END NAME SAVER ------------------------------
-
-// ------------------------- fake button ---------------------
-
-function changeColor() {
-  var myButton = document.getElementById("btnname");
-
-  // Ajoute la classe "clicked" pour changer la couleur du bouton
-  myButton.classList.add("clicked");
-
-  // Attends 1 secondes avant de supprimer la classe "clicked"
-  setTimeout(function() {
-    myButton.classList.remove("clicked");
-  }, 1000);
-
+// Fonction qui va sauvegarder le nom de l'utilisateur dans le stockage local
+function autosaveName() {
+  localStorage.setItem("nom2", inputNom.value);
 }
 
-
-// ------------------------- END PLACEHOLDER ------------------------------
-
+// Fonction qui va afficher le message de salutation en fonction de l'heure et de la langue choisie
 function afficherMessage() {
-  var nom = localStorage.getItem("nom2");
-  var date = new Date();
-  var heure = date.getHours();
+  const nom = localStorage.getItem("nom2");
+  const heure = new Date().getHours();
+  const lang = document.documentElement.lang;
+  let message = "";
 
-  var message = "";
-
-  if (nom != null && nom !== "") { // Vérifie si nom n'est pas nul ou vide
+  if (nom) {
     if (heure >= 6 && heure < 12) {
-      if (document.documentElement.lang === "fr") {
-        message = "Bonjour";
-      } else if (document.documentElement.lang === "en") {
-        message = "Good morning";
-      } else if (document.documentElement.lang === "de") {
-        message = "Guten Morgen";
-      } else if (document.documentElement.lang === "mw") {
-        message = "Meowning";
-      }
+      message = (lang === "fr") ? BONJOUR_FR :
+      (lang === "en") ? BONJOUR_EN :
+      (lang === "de") ? BONJOUR_DE :
+      (lang === "mw") ? BONJOUR_MW :
+      "";
     } else if (heure >= 12 && heure < 17) {
-      if (document.documentElement.lang === "fr") {
-        message = "Bon après-midi";
-      } else if (document.documentElement.lang === "en") {
-        message = "Good afternoon";
-      } else if (document.documentElement.lang === "de") {
-        message = "Guten Tag";
-      } else if (document.documentElement.lang === "mw") {
-        message = "Meownoon";
-      }
+      message = (lang === "fr") ? BON_APRES_MIDI_FR :
+      (lang === "en") ? BON_APRES_MIDI_EN :
+      (lang === "de") ? BON_APRES_MIDI_DE :
+      (lang === "mw") ? BON_APRES_MIDI_MW :
+      "";
     } else {
-      if (document.documentElement.lang === "fr") {
-        message = "Bonsoir";
-      } else if (document.documentElement.lang === "en") {
-        message = "Good evening";
-      } else if (document.documentElement.lang === "de") {
-        message = "Guten Abend";
-      } else if (document.documentElement.lang === "mw") {
-        message = "Meowing";
-      }
+      message = (lang === "fr") ? BONSOIR_FR :
+      (lang === "en") ? BONSOIR_EN :
+      (lang === "de") ? BONSOIR_DE :
+      (lang === "mw") ? BONSOIR_MW :
+      "";
     }
 
     message += ", " + nom + ".";
+
   }
 
-  document.getElementById("message").innerHTML = message;
+  // On affiche le message dans l'élément HTML messageEl
+  messageEl.textContent = message;
 }
 
-setInterval(afficherMessage, 1000);
+// On écoute les changements dans l'élément inputNom et on appelle les fonctions de sauvegarde et d'affichage
+inputNom.addEventListener("input", () => {
+  autosaveName();
+  afficherMessage();
+});
 
-
+// On appelle la fonction afficherMessage toutes les secondes pour mettre à jour l'affichage de l'heure
+setInterval(afficherMessage, 50);
 // ----------------------------------------------------- MODIFICATION DU MOTEUR -----------------------------------------------------
 
 let placeholderValue = "";
@@ -442,19 +402,26 @@ function changeSearchEngine(engine) {
 
 // ----------------------------------------------------- VALIDATION SEARCHBAR -----------------------------------------------------
 
+// Cette fonction est appelée lorsqu'un formulaire de recherche est soumis
 function validateSearch(event) {
-    var searchInput = document.getElementById("searchBar");
-    if (searchInput.value.trim() === "") {
-        searchInput.classList.add("shake"); // ajouter la classe "shake"
-        setTimeout(function() {
-            searchInput.classList.remove("shake"); // enlever la classe "shake" après 1 seconde
-        }, 1000);
-        searchInput.style.borderColor = "red"; // changer la couleur de fond
-        setTimeout(function() {
-            searchInput.style.borderColor = ""; // enlever la couleur de fond après 1 seconde
-        }, 500);
-        event.preventDefault(); // empêcher l'envoi du formulaire
-        return false;
-    }
-    return true;
+  // Récupère l'élément de formulaire de recherche par son ID
+  const searchInput = document.getElementById("searchBar");
+
+  // Vérifie si l'entrée de recherche est vide ou composée uniquement d'espaces blancs
+  if (searchInput.value.trim() === "") {
+    // Ajoute une classe CSS pour faire vibrer l'entrée de recherche
+    searchInput.classList.add("shake");
+    // Supprime la classe CSS "shake" après une seconde
+    setTimeout(() => searchInput.classList.remove("shake"), 1000);
+    // Change la couleur de la bordure de l'entrée de recherche en rouge
+    searchInput.style.borderColor = "red";
+    // Rétablit la couleur de la bordure de l'entrée de recherche après 500 ms
+    setTimeout(() => searchInput.style.borderColor = "", 500);
+    // Empêche l'envoi du formulaire
+    event.preventDefault();
+    // Retourne faux pour indiquer que la validation a échoué
+    return false;
+  }
+  // Retourne vrai pour indiquer que la validation a réussi
+  return true;
 }

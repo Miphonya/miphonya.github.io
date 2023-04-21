@@ -31,12 +31,12 @@
 				</select>
 			</div>
 			<div class="select">
-  			<select id="resolutionSelect" onchange="changeResolution(this.value)">
-					<option value="fullhd">📼 FullHD (🚴‍♀️)</option>
-	        <option value="qhd">🎞 QHD (🏃‍♀️)</option>
-	        <option value="wqhd">📺 WQHD (‍🚶‍♀️)</option>
-	        <option value="quatrek">🖥 4K(🐌)</option>
-			  </select>
+				<select id="resolutionSelect" onchange="changeResolution(this.value)">
+					<option value="fullhd">📼 FullHD (⚡⚡⚡⚡)</option>
+					<option value="qhd">🎞 QHD (⚡⚡⚡)</option>
+					<option value="wqhd">📺 WQHD (‍⚡⚡)</option>
+					<option value="quatrek">🖥 4K(⚡)</option>
+				</select>
 			</div>
 
 			<div class="blocknamelocker">
@@ -47,7 +47,7 @@
 			<div class="blockwallpaper">
 				<input type="text" id="urlImage" placeholder="" name="urlImage">
 				<span id="tooltip">error</span>
-			  </div>
+			</div>
 
 
 		</div>
@@ -55,25 +55,22 @@
 
 
 	<div class="containerOfSearchbar">
-
-			<div class="columns">
-				<div class="column is-one-quarter"></div>
-				<div class="column">
-					<form id="searchForm" action="" method="get" target="_self" onsubmit="return validateSearch(event)">
-						<input class="input is-medium" type="text" name="q" placeholder="" id="searchBar">
-					</form>
-				</div>
-				<div class="column is-one-quarter"></div>
-			</div>
-			<div class="dockersalutations">
-
-				<div class="textsalutations" id="message"></div>
-
-			</div>
-
+		 <div class="column"></div>
+		 	 <div class="column"></div>
+	  <div class="column is-offset-2 is-two-thirds">
+	    <form id="searchForm" action="" method="get" target="_self" onsubmit="return validateSearch(event)">
+	      <input class="input is-medium" type="text" name="q" placeholder="" id="searchBar">
+	    </form>
+	  </div>
+	  <div class="column">
+	    <div class="dockersalutations">
+	      <div class="textsalutations" id="message"></div>
+	    </div>
+	  </div>
 	</div>
-<!--	<a id="credit" href="https://unsplash.com/">Wallpaper from Unsplash</a>
--->
+
+		<!--	<a id="credit" href="https://unsplash.com/">Wallpaper from Unsplash</a>
+	-->
 </body>
 
 </html>
