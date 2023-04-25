@@ -71,10 +71,10 @@ function changeLang(lang) {
     },
     pl: {
       placeholder: "Szukaj na ",
-tooltip: "Wpisz tutaj JEDNO słowo, aby zmienić motyw tła. Aby uzyskać szybsze wyniki, użyj popularnych angielskich słów, takich jak „Tapeta”. Konkretne słowa, takie jak „Kaczka”, również będą działać, ale mogą spowolnić ładowanie strony, podobnie jak słowa w innych językach niż angielski. Pozostaw puste, aby zresetować.",
-urlPlaceholder: "Zmień tło",
-title: "Nowa karta",
-savednomPlaceholder: "Jak masz na imię?"
+      tooltip: "Wpisz tutaj JEDNO słowo, aby zmienić motyw tła. Aby uzyskać szybsze wyniki, użyj popularnych angielskich słów, takich jak „Tapeta”. Konkretne słowa, takie jak „Kaczka”, również będą działać, ale mogą spowolnić ładowanie strony, podobnie jak słowa w innych językach niż angielski. Pozostaw puste, aby zresetować.",
+      urlPlaceholder: "Zmień tło",
+      title: "Nowa karta",
+      savednomPlaceholder: "Jak masz na imię?"
 
     },
     pt: {
@@ -334,7 +334,16 @@ if (!localStorage.getItem('firstVisit')) {
   </div>
   </div>
   <br>
-  <button class="button is-medium" onclick="welcomsaver()">OK !</button>
+
+  <div>
+  <label for="checkbox1"><input type="checkbox" id="checkbox1"> </label>
+  <a id=termsofuse href="legal/conditionutil.html">TERMS OF USE</a>
+  </div>
+  <div>
+  <label for="checkbox2"><input type="checkbox" id="checkbox2"></label>
+  <a id=dataprot href="legal/protectdonne.html">DATA PRIVACY</a>
+  </div>
+  <button class="button is-medium" onclick="welcomsaver()">⇾ 💾 ⇽</button>
   </div>
   `;
 
@@ -384,201 +393,223 @@ if (!localStorage.getItem('firstVisit')) {
 
 // -----------------------------------------------------  welcomsaver -----------------------------------------------------
 function welcomsaver() {
-  // Enregistrer la visite de l'utilisateur dans le stockage local
-  localStorage.setItem("firstVisit", true);
-  // Fait disparaitre le carré de bienvenue
-  square.style.display = "none";
+  var checkbox1 = document.getElementById("checkbox1");
+  var checkbox2 = document.getElementById("checkbox2");
+  var dataprot = document.getElementById("dataprot");
+  var termsofuse = document.getElementById("termsofuse");
+
+  if (checkbox1.checked && checkbox2.checked) {
+    // Enregistrer la visite de l'utilisateur dans le stockage local
+    localStorage.setItem("firstVisit", true);
+    // Fait disparaitre le carré de bienvenue
+    square.style.display = "none";
+  } else {
+    // Au moins une des checkboxes n'est pas cochée, on affiche un message d'erreur
+    if (!checkbox2.checked) {
+      dataprot.style.color = "red";
+      setTimeout(() => {
+        dataprot.style.color = "";
+      }, 500);
+    }
+    if (!checkbox1.checked) {
+      termsofuse.style.color = "red";
+      setTimeout(() => {
+        termsofuse.style.color = "";
+      }, 500);
+    }
+  }
 }
 
-// -----------------------------------------------------  SALUTATIONS -----------------------------------------------------
-// Définition de constantes pour les salutations en différentes langues
-const BONJOUR_FR = "Bonjour";
-const BONJOUR_EN = "Good morning";
-const BONJOUR_DE = "Guten Morgen";
-const BONJOUR_ES = "Buenos días";
-const BONJOUR_IT = "Buongiorno";
-const BONJOUR_NL = "Goedemorgen";
-const BONJOUR_PT = "Bom dia";
-const BONJOUR_MW = "Meowning";
-const BONJOUR_RO = "Bună dimineața";
-const BONJOUR_JP = "おはようございます";
-const BONJOUR_CN = "早上好";
-const BONJOUR_RU = "Доброе утро";
-const BONJOUR_AR = "صباح الخير";
-const BONJOUR_KR = "안녕하세요";
-const BONJOUR_PL = "Dzień dobry";
 
-const BON_APRES_MIDI_FR = "Bon après-midi";
-const BON_APRES_MIDI_EN = "Good afternoon";
-const BON_APRES_MIDI_ES = "Buenas tardes";
-const BON_APRES_MIDI_DE = "Guten Tag";
-const BON_APRES_MIDI_IT = "Buongiorno";
-const BON_APRES_MIDI_NL = "Goedemiddag";
-const BON_APRES_MIDI_PT = "Boa tarde";
-const BON_APRES_MIDI_MW = "Meownoon";
-const BON_APRES_MIDI_RO = "Bună după-amiază";
-const BON_APRES_MIDI_JP = "こんにちは";
-const BON_APRES_MIDI_CN = "下午好";
-const BON_APRES_MIDI_RU = "Добрый день";
-const BON_APRES_MIDI_AR = "طاب مساؤك";
-const BON_APRES_MIDI_KR = "안녕하세요";
-const BON_APRES_MIDI_PL = "Dzień dobry";
+  // -----------------------------------------------------  SALUTATIONS -----------------------------------------------------
+  // Définition de constantes pour les salutations en différentes langues
+  const BONJOUR_FR = "Bonjour";
+  const BONJOUR_EN = "Good morning";
+  const BONJOUR_DE = "Guten Morgen";
+  const BONJOUR_ES = "Buenos días";
+  const BONJOUR_IT = "Buongiorno";
+  const BONJOUR_NL = "Goedemorgen";
+  const BONJOUR_PT = "Bom dia";
+  const BONJOUR_MW = "Meowning";
+  const BONJOUR_RO = "Bună dimineața";
+  const BONJOUR_JP = "おはようございます";
+  const BONJOUR_CN = "早上好";
+  const BONJOUR_RU = "Доброе утро";
+  const BONJOUR_AR = "صباح الخير";
+  const BONJOUR_KR = "안녕하세요";
+  const BONJOUR_PL = "Dzień dobry";
 
-const BONSOIR_FR = "Bonsoir";
-const BONSOIR_EN = "Good evening";
-const BONSOIR_ES = "Buenas noches";
-const BONSOIR_DE = "Guten Abend";
-const BONSOIR_IT = "Buonasera";
-const BONSOIR_NL = "Goedenavond";
-const BONSOIR_PT = "Boa noite";
-const BONSOIR_MW = "Meowing";
-const BONSOIR_RO = "Bună seara";
-const BONSOIR_JP = "こんばんは";
-const BONSOIR_CN = "晚上好";
-const BONSOIR_RU = "Добрый вечер";
-const BONSOIR_AR = "مساء الخير";
-const BONSOIR_KR = "안녕하세요";
-const BONSOIR_PL = "Dobry wieczór";
+  const BON_APRES_MIDI_FR = "Bon après-midi";
+  const BON_APRES_MIDI_EN = "Good afternoon";
+  const BON_APRES_MIDI_ES = "Buenas tardes";
+  const BON_APRES_MIDI_DE = "Guten Tag";
+  const BON_APRES_MIDI_IT = "Buongiorno";
+  const BON_APRES_MIDI_NL = "Goedemiddag";
+  const BON_APRES_MIDI_PT = "Boa tarde";
+  const BON_APRES_MIDI_MW = "Meownoon";
+  const BON_APRES_MIDI_RO = "Bună după-amiază";
+  const BON_APRES_MIDI_JP = "こんにちは";
+  const BON_APRES_MIDI_CN = "下午好";
+  const BON_APRES_MIDI_RU = "Добрый день";
+  const BON_APRES_MIDI_AR = "طاب مساؤك";
+  const BON_APRES_MIDI_KR = "안녕하세요";
+  const BON_APRES_MIDI_PL = "Dzień dobry";
 
-// Récupération des éléments HTML avec lesquels on va travailler
-const inputNom = document.getElementById("savednom");
-const messageEl = document.getElementById("message");
+  const BONSOIR_FR = "Bonsoir";
+  const BONSOIR_EN = "Good evening";
+  const BONSOIR_ES = "Buenas noches";
+  const BONSOIR_DE = "Guten Abend";
+  const BONSOIR_IT = "Buonasera";
+  const BONSOIR_NL = "Goedenavond";
+  const BONSOIR_PT = "Boa noite";
+  const BONSOIR_MW = "Meowing";
+  const BONSOIR_RO = "Bună seara";
+  const BONSOIR_JP = "こんばんは";
+  const BONSOIR_CN = "晚上好";
+  const BONSOIR_RU = "Добрый вечер";
+  const BONSOIR_AR = "مساء الخير";
+  const BONSOIR_KR = "안녕하세요";
+  const BONSOIR_PL = "Dobry wieczór";
 
-// Fonction qui va sauvegarder le nom de l'utilisateur dans le stockage local
-function autosaveName() {
-  localStorage.setItem("nom2", inputNom.value);
-}
+  // Récupération des éléments HTML avec lesquels on va travailler
+  const inputNom = document.getElementById("savednom");
+  const messageEl = document.getElementById("message");
 
-// Fonction qui va afficher le message de salutation en fonction de l'heure et de la langue choisie
-function afficherMessage() {
-  const nom = localStorage.getItem("nom2");
-  const heure = new Date().getHours();
-  const lang = document.documentElement.lang;
-  let message = "";
+  // Fonction qui va sauvegarder le nom de l'utilisateur dans le stockage local
+  function autosaveName() {
+    localStorage.setItem("nom2", inputNom.value);
+  }
 
-  if (nom) {
-    if (heure >= 6 && heure < 12) {
-      message = (lang === "fr") ? BONJOUR_FR :
-      (lang === "en") ? BONJOUR_EN :
-      (lang === "de") ? BONJOUR_DE :
-      (lang === "es") ? BONJOUR_ES :
-      (lang === "it") ? BONJOUR_IT :
-      (lang === "nl") ? BONJOUR_NL :
-      (lang === "pt") ? BONJOUR_PT :
-      (lang === "mw") ? BONJOUR_MW :
-      (lang === "ro") ? BONJOUR_RO :
-      (lang === "jp") ? BONJOUR_JP :
-      (lang === "cn") ? BONJOUR_CM :
-      (lang === "ru") ? BONJOUR_RU :
-      (lang === "ar") ? BONJOUR_AR :
-      (lang === "kr") ? BONJOUR_KR :
-      (lang === "pl") ? BONJOUR_PL :
-      "";
-    } else if (heure >= 12 && heure < 17) {
-      message = (lang === "fr") ? BON_APRES_MIDI_FR :
-      (lang === "en") ? BON_APRES_MIDI_EN :
-      (lang === "de") ? BON_APRES_MIDI_DE :
-      (lang === "es") ? BON_APRES_MIDI_ES :
-      (lang === "it") ? BON_APRES_MIDI_IT :
-      (lang === "nl") ? BON_APRES_MIDI_NL :
-      (lang === "pt") ? BON_APRES_MIDI_PT :
-      (lang === "mw") ? BON_APRES_MIDI_MW :
-      (lang === "ro") ? BON_APRES_MIDI_RO :
-      (lang === "jp") ? BON_APRES_MIDI_JP :
-      (lang === "cn") ? BON_APRES_MIDI_CN :
-      (lang === "ru") ? BON_APRES_MIDI_RU :
-      (lang === "ar") ? BON_APRES_MIDI_AR :
-      (lang === "kr") ? BON_APRES_MIDI_KR :
-      (lang === "pl") ? BON_APRES_MIDI_PL :
-      "";
-    } else {
-      message = (lang === "fr") ? BONSOIR_FR :
-      (lang === "en") ? BONSOIR_EN :
-      (lang === "de") ? BONSOIR_DE :
-      (lang === "es") ? BONSOIR_ES :
-      (lang === "it") ? BONSOIR_IT :
-      (lang === "nl") ? BONSOIR_NL :
-      (lang === "pt") ? BONSOIR_PT :
-      (lang === "mw") ? BONSOIR_MW :
-      (lang === "ro") ? BONSOIR_RO :
-      (lang === "jp") ? BONSOIR_JP :
-      (lang === "cn") ? BONSOIR_CN :
-      (lang === "ru") ? BONSOIR_RU :
-      (lang === "ar") ? BONSOIR_AR :
-      (lang === "kr") ? BONSOIR_KR :
-      (lang === "pl") ? BONSOIR_PL :
-      "";
+  // Fonction qui va afficher le message de salutation en fonction de l'heure et de la langue choisie
+  function afficherMessage() {
+    const nom = localStorage.getItem("nom2");
+    const heure = new Date().getHours();
+    const lang = document.documentElement.lang;
+    let message = "";
+
+    if (nom) {
+      if (heure >= 6 && heure < 12) {
+        message = (lang === "fr") ? BONJOUR_FR :
+        (lang === "en") ? BONJOUR_EN :
+        (lang === "de") ? BONJOUR_DE :
+        (lang === "es") ? BONJOUR_ES :
+        (lang === "it") ? BONJOUR_IT :
+        (lang === "nl") ? BONJOUR_NL :
+        (lang === "pt") ? BONJOUR_PT :
+        (lang === "mw") ? BONJOUR_MW :
+        (lang === "ro") ? BONJOUR_RO :
+        (lang === "jp") ? BONJOUR_JP :
+        (lang === "cn") ? BONJOUR_CM :
+        (lang === "ru") ? BONJOUR_RU :
+        (lang === "ar") ? BONJOUR_AR :
+        (lang === "kr") ? BONJOUR_KR :
+        (lang === "pl") ? BONJOUR_PL :
+        "";
+      } else if (heure >= 12 && heure < 17) {
+        message = (lang === "fr") ? BON_APRES_MIDI_FR :
+        (lang === "en") ? BON_APRES_MIDI_EN :
+        (lang === "de") ? BON_APRES_MIDI_DE :
+        (lang === "es") ? BON_APRES_MIDI_ES :
+        (lang === "it") ? BON_APRES_MIDI_IT :
+        (lang === "nl") ? BON_APRES_MIDI_NL :
+        (lang === "pt") ? BON_APRES_MIDI_PT :
+        (lang === "mw") ? BON_APRES_MIDI_MW :
+        (lang === "ro") ? BON_APRES_MIDI_RO :
+        (lang === "jp") ? BON_APRES_MIDI_JP :
+        (lang === "cn") ? BON_APRES_MIDI_CN :
+        (lang === "ru") ? BON_APRES_MIDI_RU :
+        (lang === "ar") ? BON_APRES_MIDI_AR :
+        (lang === "kr") ? BON_APRES_MIDI_KR :
+        (lang === "pl") ? BON_APRES_MIDI_PL :
+        "";
+      } else {
+        message = (lang === "fr") ? BONSOIR_FR :
+        (lang === "en") ? BONSOIR_EN :
+        (lang === "de") ? BONSOIR_DE :
+        (lang === "es") ? BONSOIR_ES :
+        (lang === "it") ? BONSOIR_IT :
+        (lang === "nl") ? BONSOIR_NL :
+        (lang === "pt") ? BONSOIR_PT :
+        (lang === "mw") ? BONSOIR_MW :
+        (lang === "ro") ? BONSOIR_RO :
+        (lang === "jp") ? BONSOIR_JP :
+        (lang === "cn") ? BONSOIR_CN :
+        (lang === "ru") ? BONSOIR_RU :
+        (lang === "ar") ? BONSOIR_AR :
+        (lang === "kr") ? BONSOIR_KR :
+        (lang === "pl") ? BONSOIR_PL :
+        "";
+      }
+
+      message += ", " + nom + ".";
+
     }
 
-    message += ", " + nom + ".";
-
+    // On affiche le message dans l'élément HTML messageEl
+    messageEl.textContent = message;
   }
 
-  // On affiche le message dans l'élément HTML messageEl
-  messageEl.textContent = message;
-}
+  // On écoute les changements dans l'élément inputNom et on appelle les fonctions de sauvegarde et d'affichage
+  inputNom.addEventListener("input", () => {
+    autosaveName();
+    afficherMessage();
+  });
 
-// On écoute les changements dans l'élément inputNom et on appelle les fonctions de sauvegarde et d'affichage
-inputNom.addEventListener("input", () => {
-  autosaveName();
-  afficherMessage();
-});
+  // On appelle la fonction afficherMessage toutes les secondes pour mettre à jour l'affichage de l'heure
+  setInterval(afficherMessage, 50);
+  // ----------------------------------------------------- MODIFICATION DU MOTEUR -----------------------------------------------------
 
-// On appelle la fonction afficherMessage toutes les secondes pour mettre à jour l'affichage de l'heure
-setInterval(afficherMessage, 50);
-// ----------------------------------------------------- MODIFICATION DU MOTEUR -----------------------------------------------------
+  let placeholderValue = "";
 
-let placeholderValue = "";
+  function changeSearchEngine(engine) {
+    const searchForm = document.getElementById("searchForm");
+    if (engine === "google") {
+      searchForm.action = "https://www.google.com/search";
+      placeholderValue = "Google";
+      localStorage.setItem("searchEngine", "google"); // stocker la valeur "google" dans le local storage
 
-function changeSearchEngine(engine) {
-  const searchForm = document.getElementById("searchForm");
-  if (engine === "google") {
-    searchForm.action = "https://www.google.com/search";
-    placeholderValue = "Google";
-    localStorage.setItem("searchEngine", "google"); // stocker la valeur "google" dans le local storage
+    } else if (engine === "bing") {
+      searchForm.action = "https://www.bing.com/search";
+      placeholderValue = "Bing";
+      localStorage.setItem("searchEngine", "bing"); // stocker la valeur "bing" dans le local storage
 
-  } else if (engine === "bing") {
-    searchForm.action = "https://www.bing.com/search";
-    placeholderValue = "Bing";
-    localStorage.setItem("searchEngine", "bing"); // stocker la valeur "bing" dans le local storage
+    } else if (engine === "brave") {
+      searchForm.action = "https://search.brave.com/search";
+      placeholderValue = "Brave Search";
+      localStorage.setItem("searchEngine", "brave"); // stocker la valeur "brave" dans le local storage
 
-  } else if (engine === "brave") {
-    searchForm.action = "https://search.brave.com/search";
-    placeholderValue = "Brave Search";
-    localStorage.setItem("searchEngine", "brave"); // stocker la valeur "brave" dans le local storage
+    }else if (engine === "duckduckgo") {
+      searchForm.action = "https://duckduckgo.com/";
+      placeholderValue = "DuckDuckGo";
+      localStorage.setItem("searchEngine", "duckduckgo"); // stocker la valeur "DuckDuckGo" dans le local storage
+    }
 
-  }else if (engine === "duckduckgo") {
-    searchForm.action = "https://duckduckgo.com/";
-    placeholderValue = "DuckDuckGo";
-    localStorage.setItem("searchEngine", "duckduckgo"); // stocker la valeur "DuckDuckGo" dans le local storage
+    // Appeler la fonction changeLang() pour mettre à jour le placeholder
+    changeLang(localStorage.getItem("lang"));
   }
 
-  // Appeler la fonction changeLang() pour mettre à jour le placeholder
-  changeLang(localStorage.getItem("lang"));
-}
+  // ----------------------------------------------------- VALIDATION SEARCHBAR -----------------------------------------------------
 
-// ----------------------------------------------------- VALIDATION SEARCHBAR -----------------------------------------------------
+  // Cette fonction est appelée lorsqu'un formulaire de recherche est soumis
+  function validateSearch(event) {
+    // Récupère l'élément de formulaire de recherche par son ID
+    const searchInput = document.getElementById("searchBar");
 
-// Cette fonction est appelée lorsqu'un formulaire de recherche est soumis
-function validateSearch(event) {
-  // Récupère l'élément de formulaire de recherche par son ID
-  const searchInput = document.getElementById("searchBar");
-
-  // Vérifie si l'entrée de recherche est vide ou composée uniquement d'espaces blancs
-  if (searchInput.value.trim() === "") {
-    // Ajoute une classe CSS pour faire vibrer l'entrée de recherche
-    searchInput.classList.add("shake");
-    // Supprime la classe CSS "shake" après une seconde
-    setTimeout(() => searchInput.classList.remove("shake"), 1000);
-    // Change la couleur de la bordure de l'entrée de recherche en rouge
-    searchInput.style.borderColor = "red";
-    // Rétablit la couleur de la bordure de l'entrée de recherche après 500 ms
-    setTimeout(() => searchInput.style.borderColor = "", 500);
-    // Empêche l'envoi du formulaire
-    event.preventDefault();
-    // Retourne faux pour indiquer que la validation a échoué
-    return false;
+    // Vérifie si l'entrée de recherche est vide ou composée uniquement d'espaces blancs
+    if (searchInput.value.trim() === "") {
+      // Ajoute une classe CSS pour faire vibrer l'entrée de recherche
+      searchInput.classList.add("shake");
+      // Supprime la classe CSS "shake" après une seconde
+      setTimeout(() => searchInput.classList.remove("shake"), 1000);
+      // Change la couleur de la bordure de l'entrée de recherche en rouge
+      searchInput.style.borderColor = "red";
+      // Rétablit la couleur de la bordure de l'entrée de recherche après 500 ms
+      setTimeout(() => searchInput.style.borderColor = "", 500);
+      // Empêche l'envoi du formulaire
+      event.preventDefault();
+      // Retourne faux pour indiquer que la validation a échoué
+      return false;
+    }
+    // Retourne vrai pour indiquer que la validation a réussi
+    return true;
   }
-  // Retourne vrai pour indiquer que la validation a réussi
-  return true;
-}
