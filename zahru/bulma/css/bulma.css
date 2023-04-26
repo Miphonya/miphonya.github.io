@@ -43,6 +43,11 @@ outline: none;
   color: black;
 }
 
+#looklikeA{
+  color: black;
+  display : inline;
+}
+
 /* --------------------*/
 
 
@@ -54,7 +59,7 @@ outline: none;
   border-radius: 5px 5px 5px 5px;
   border: 2px solid;
   width: 700px;
-  height: 500px;
+  height: 450px;
   background-color: #cdcdcd99;
   border-color: #000;
 
