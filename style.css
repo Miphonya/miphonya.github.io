@@ -64,3 +64,20 @@ html {
   transform: scale(1.1); /* pour agrandir légèrement l'image lors du survol */
   box-shadow: 0 0 10px #fff; /* pour ajouter une ombre plus prononcée lors du survol */
 }
+
+.is-centered {
+	display: block;
+	width: 20%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.miphonyaTT {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 30px;
+  position: relative; /* pour que le conteneur soit la référence de position */
+  font-family: 'Ubuntu', sans-serif;
+}
