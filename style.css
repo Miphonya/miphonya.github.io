@@ -138,8 +138,9 @@ html {
 
 /* Media Queries pour rendre le site responsive */
 
-/* Pour les écrans jusqu'à 768px de large (y compris les téléphones) */
-@media screen and (max-width: 768px) {
+/* Pour les écrans jusqu'à 768px de large (y compris les téléphones)
+   et également pour les appareils où la hauteur est plus grande que la largeur */
+@media screen and (orientation: portrait) {
     html {
         background-size: auto; /* Changez la taille de l'arrière-plan pour s'adapter à l'écran plus petit */
     }
@@ -175,25 +176,5 @@ html {
     .social-icons a {
         display: block; /* Afficher les icônes en bloc pour les centrer */
         margin: 10px auto; /* Centrer les icônes horizontalement */
-    }
-}
-
-/* Pour les écrans plus larges que 768px (téléphones avec définition plus haute) jusqu'à 1024px */
-@media screen and (min-width: 769px) and (max-width: 1024px) {
-    /* Ajoutez ici vos styles pour les écrans de taille moyenne */
-    .profile, .portfolio, .project-card {
-        flex-basis: 50%; /* Les éléments prennent 50% de la largeur de l'écran */
-    }
-}
-
-/* Pour les écrans plus larges que 1024px */
-@media screen and (min-width: 1025px) {
-    /* Ajoutez ici vos styles pour les grands écrans */
-    .profile {
-        flex-basis: 45%; /* Le profil occupe 30% de la largeur de l'écran */
-    }
-
-    .portfolio {
-        flex-basis: 55%; /* Le portfolio occupe 70% de la largeur de l'écran */
     }
 }
