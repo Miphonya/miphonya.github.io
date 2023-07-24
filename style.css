@@ -138,8 +138,7 @@ html {
 
 /* Media Queries pour rendre le site responsive */
 
-/* Pour les écrans jusqu'à 768px de large (y compris les téléphones)
-   et également pour les appareils où la hauteur est plus grande que la largeur */
+/* Pour les appareils où la hauteur est plus grande que la largeur */
 @media screen and (orientation: portrait) {
     html {
         background-size: auto; /* Changez la taille de l'arrière-plan pour s'adapter à l'écran plus petit */
@@ -147,6 +146,8 @@ html {
 
     .container2 {
         flex-direction: column; /* Pour afficher les éléments en colonnes plutôt qu'en ligne */
+        justify-content: center; /* Centrer le contenu verticalement */
+        align-items: center; /* Centrer le contenu horizontalement */
     }
 
     .profile, .portfolio, .project-card {
