@@ -1,83 +1,174 @@
+/* Styles généraux */
 html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  backdrop-filter: blur(5px);
-
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    backdrop-filter: blur(5px);
 }
 
 html {
-  background-image: url("http://source.unsplash.com/1920x1080?wallpaper");
-  background-repeat: no-repeat;
-  background-size: cover;
-  backdrop-filter: blur(5px);
-
+    background-color: #000; /* Fond noir */
+    background-image: url("http://source.unsplash.com/1920x1080?night");
+    background-repeat: no-repeat;
+    background-size: cover;
+    backdrop-filter: blur(5px);
 }
 
 .background {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  backdrop-filter: blur(5px);
-  z-index: 1; /* pour positionner l'élément au-dessous des autres éléments de la page */
-}
-
-.container {
-  margin-top: 10%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #fff;
-  font-size: 50px;
-  padding: 15px 0; /* pour espacer les conteneurs verticalement */
-  border-radius: 10px; /* pour ajouter des coins arrondis */
-  overflow: hidden; /* pour cacher les coins qui dépassent */
-  position: relative; /* pour que le conteneur soit la référence de position */
-  font-family: 'Ubuntu', sans-serif;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(5px);
+    z-index: 1; /* pour positionner l'élément au-dessous des autres éléments de la page */
 }
 
 .container2 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto; /* pour centrer le conteneur horizontalement */
-  padding: 15px 0; /* pour espacer les conteneurs verticalement */
-  border-radius: 10px; /* pour ajouter des coins arrondis */
-  overflow: hidden; /* pour cacher les coins qui dépassent */
-  margin-top: 10px; /* pour ajouter de l'espace entre les deux containers */
-  position: relative; /* pour que le conteneur soit la référence de position */
+    display: flex;
+    justify-content: space-between; /* Pour placer les deux colonnes à gauche et à droite */
+    align-items: flex-start;
+    margin: 10px; /* Ajout de marge autour du conteneur */
+    padding: 15px; /* pour espacer les conteneurs verticalement */
+    border-radius: 10px; /* pour ajouter des coins arrondis */
+    overflow: hidden; /* pour cacher les coins qui dépassent */
+    position: relative; /* pour que le conteneur soit la référence de position */
 }
 
-.image {
-  width: 250px;
-  height: 200px;
-  margin-right: 43px; /* pour espacer les images horizontalement */
-  border-radius: 10px; /* pour ajouter des coins arrondis */
-  overflow: hidden; /* pour cacher les coins qui dépassent */
-  box-shadow: 0 0 5px rgba(0,0,0,0.2); /* pour ajouter une ombre */
-  transition: transform 0.2s ease-in-out; /* pour ajouter une transition lors du survol */
+.profile {
+    flex: 1; /* occupe tout l'espace disponible */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 10px; /* Ajout de marge à droite pour séparer du projet suivant */
 }
 
-.image:hover {
-  transform: scale(1.1); /* pour agrandir légèrement l'image lors du survol */
-  box-shadow: 0 0 10px #fff; /* pour ajouter une ombre plus prononcée lors du survol */
+.bocal {
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.5); /* Fond sombre transparent */
+    backdrop-filter: blur(10px); /* Flou de l'arrière-plan */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1); /* Ombre portée */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Bordure claire */
 }
 
+.portfolio {
+    flex: 1; /* occupe tout l'espace disponible */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.project-card {
+    flex-basis: calc(40% - 20px); /* 2 cartes par ligne avec un espace entre */
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.5); /* Fond sombre transparent */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2); /* Ombre portée */
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Bordure claire */
+    margin: 10px; /* Ajout de marge autour de chaque carte */
+}
+
+.project-card h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #fff; /* Couleur du texte en blanc */
+}
+
+.project-card p {
+    font-size: 16px;
+    margin-bottom: 15px;
+    color: #fff; /* Couleur du texte en blanc */
+}
+
+.portfolio-button {
+    width: 100%;
+    padding: 10px 0;
+    background-color: #2196F3;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.portfolio-button:hover {
+    background-color: #0c7cd5;
+}
+
+.personal-info {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.personal-info p {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #fff; /* Couleur du texte en blanc */
+}
+
+/* Styles pour le texte du profil */
 .is-centered {
-	display: block;
-	width: 20%;
-	margin-left: auto;
-	margin-right: auto;
+    display: block;
+    width: 20%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .miphonyaTT {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #fff;
-  font-size: 30px;
-  position: relative; /* pour que le conteneur soit la référence de position */
-  font-family: 'Ubuntu', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff; /* Couleur du texte en blanc */
+    font-size: 30px;
+    position: relative; /* pour que le conteneur soit la référence de position */
+    font-family: 'Ubuntu', sans-serif;
+}
+
+/* Media Queries pour rendre le site responsive */
+
+@media screen and (max-width: 768px) {
+    .container2 {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .profile, .portfolio {
+        flex-basis: 100%;
+    }
+
+    .project-card {
+        flex-basis: 100%;
+    }
+}
+
+
+@media screen and (min-width: 768px) {
+    .portfolio {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .project-card {
+        flex-basis: calc(50% - 20px); /* Two cards per row with space between */
+        margin-bottom: 20px;
+        padding: 20px;
+        background-color: rgba(0, 0, 0, 0.5); /* Fond sombre transparent */
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.2); /* Ombre portée */
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.3); /* Bordure claire */
+        margin: 10px; /* Ajout de marge autour de chaque carte */
+    }
+}
+
+.social-icons {
+    margin-top: 20px;
+}
+
+.social-icons a {
+    color: #fff; /* Couleur des icônes en blanc */
+    font-size: 24px;
+    margin-right: 10px;
 }
