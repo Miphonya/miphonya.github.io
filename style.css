@@ -126,14 +126,6 @@ html {
     font-family: 'Ubuntu', sans-serif;
 }
 
-/* Media Queries pour rendre le site responsive */
-
-@media screen and (max-width: 768px) {
-    .profile, .portfolio, .project-card {
-        flex-basis: 100%;
-    }
-}
-
 .social-icons {
     margin-top: 20px;
 }
@@ -142,4 +134,66 @@ html {
     color: #fff; /* Couleur des icônes en blanc */
     font-size: 24px;
     margin-right: 10px;
+}
+
+/* Media Queries pour rendre le site responsive */
+
+/* Pour les écrans jusqu'à 768px de large (y compris les téléphones) */
+@media screen and (max-width: 768px) {
+    html {
+        background-size: auto; /* Changez la taille de l'arrière-plan pour s'adapter à l'écran plus petit */
+    }
+
+    .container2 {
+        flex-direction: column; /* Pour afficher les éléments en colonnes plutôt qu'en ligne */
+    }
+
+    .profile, .portfolio, .project-card {
+        flex-basis: 100%; /* Tous les éléments prennent la largeur complète */
+        margin: 0; /* Supprimez les marges pour occuper toute la largeur */
+    }
+
+    .project-card {
+        margin-left: 0; /* Supprimez la marge à gauche pour centrer les cartes */
+    }
+
+    /* Ajustements pour le texte du profil */
+    .is-centered {
+        width: 100%;
+    }
+
+    .miphonyaTT {
+        font-size: 18px; /* Ajustez la taille du texte pour l'écran plus petit */
+    }
+
+    /* Ajustements pour les icônes de médias sociaux */
+    .social-icons {
+        text-align: center; /* Centrer les icônes */
+        margin: 20px 0; /* Ajouter une marge en haut et en bas pour l'espacement */
+    }
+
+    .social-icons a {
+        display: block; /* Afficher les icônes en bloc pour les centrer */
+        margin: 10px auto; /* Centrer les icônes horizontalement */
+    }
+}
+
+/* Pour les écrans plus larges que 768px (téléphones avec définition plus haute) jusqu'à 1024px */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    /* Ajoutez ici vos styles pour les écrans de taille moyenne */
+    .profile, .portfolio, .project-card {
+        flex-basis: 50%; /* Les éléments prennent 50% de la largeur de l'écran */
+    }
+}
+
+/* Pour les écrans plus larges que 1024px */
+@media screen and (min-width: 1025px) {
+    /* Ajoutez ici vos styles pour les grands écrans */
+    .profile {
+        flex-basis: 45%; /* Le profil occupe 30% de la largeur de l'écran */
+    }
+
+    .portfolio {
+        flex-basis: 55%; /* Le portfolio occupe 70% de la largeur de l'écran */
+    }
 }
