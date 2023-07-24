@@ -334,13 +334,7 @@ if (!localStorage.getItem('firstVisit')) {
   </div>
   </div>
   <br>
-
-  <div>
-  <label for="checkbox1"><input type="checkbox" id="checkbox1"> </label>
-  <a id=termsofuse href="legal/conditionutil.html">TERMS OF USE</a>
-  <p id=looklikeA> AND </p>
-  <a id=dataprot href="legal/protectdonne.html">DATA PRIVACY</a>
-  </div>
+  
   <button class="button is-medium" onclick="welcomsaver()">⇾ 💾 ⇽</button>
   </div>
   `;
@@ -391,28 +385,12 @@ if (!localStorage.getItem('firstVisit')) {
 
 // -----------------------------------------------------  welcomsaver -----------------------------------------------------
 function welcomsaver() {
-  var checkbox1 = document.getElementById("checkbox1");
-  var dataprot = document.getElementById("dataprot");
-  var termsofuse = document.getElementById("termsofuse");
-  var looklikeA = document.getElementById("looklikeA");
   var square = document.getElementById("square"); // Ajout d'une variable pour récupérer l'élément à masquer
-
-  if (checkbox1.checked) {
     // Enregistrer la visite de l'utilisateur dans le stockage local
     localStorage.setItem("firstVisit", true);
     // Fait disparaitre le carré de bienvenue
     square.style.display = "none";
-  } else {
-    // Les deux checkboxes ne sont pas cochées, on affiche un message d'erreur
-    dataprot.style.color = "red";
-    termsofuse.style.color = "red";
-    looklikeA.style.color = "red";
-    setTimeout(() => {
-      dataprot.style.color = "";
-      termsofuse.style.color = "";
-      looklikeA.style.color = "";
-    }, 500);
-  }
+
 }
 
 
