@@ -1,0 +1,181 @@
+/* Styles généraux */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    backdrop-filter: blur(5px);
+}
+
+html {
+    background-color: #000; /* Fond noir */
+    background-image: url("../img/dnd/name/dndname_background.jpg"); /* Remplacez l'URL par l'image souhaitée */
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #fff;
+    backdrop-filter: blur(5px);
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    position: relative;
+}
+
+h1 {
+    text-align: center;
+    background-color: #FF8C00; /* Nouvelle couleur orange */
+    color: #fff;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+.generator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.race-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.race-button {
+    font-size: 16px;
+    padding: 10px 20px;
+    background-color: #FF8C00; /* Nouvelle couleur orange */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px;
+    transition: background-color 0.3s;
+}
+
+.race-button.active {
+    background-color: #FF4500; /* Couleur orange plus foncée pour le bouton sélectionné */
+    border: 2px solid #FF4500; /* Bordure plus épaisse pour mettre en évidence */
+    box-shadow: 0 0 10px rgba(255, 165, 0, 0.6); /* Ombre pour mettre en évidence */
+}
+
+.race-button:hover {
+    background-color: #FF4500; /* Couleur orange plus foncée au survol */
+}
+
+label {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+input[type="number"] {
+    font-size: 16px;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 2px solid #FF8C00; /* Nouvelle couleur orange pour le cadre */
+    border-radius: 5px;
+    width: 80px;
+}
+
+.rungen {
+    font-size: 16px;
+    padding: 10px 20px;
+    background-color: #FF8C00; /* Nouvelle couleur orange */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.rungen:hover {
+    background-color: #FF4500; /* Couleur orange plus foncée au survol */
+}
+
+.names-list {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 20px;
+    background-color: rgba(0, 0, 0, 0.7); /* Fond sombre transparent */
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2); /* Ombre portée */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Bordure claire */
+}
+
+/*---------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+.tab-button {
+    background-color: #FF8C00; /* Nouvelle couleur orange */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 15px;
+    transition: background-color 0.3s;
+}
+
+/* Ajout de la classe commune pour les éléments parents des boutons */
+.button-container {
+    display: flex;
+    align-items: center;
+}
+
+/* Styles pour le sélecteur de langue (existant, provenant des modifications CSS précédentes) */
+.language-dropdown {
+    position: absolute;
+    top: 10px;
+    left: 10px; /* Ajuster la position à gauche pour le coin supérieur gauche */
+    z-index: 2;
+    color: #fff;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.language-dropdown label {
+    margin-right: 5px;
+}
+
+.language-dropdown select {
+    background-color: transparent;
+    color: #fff;
+    border: 1px solid #fff;
+    padding: 3px;
+    border-radius: 3px;
+}
+
+/* Styles supplémentaires pour le sélecteur de langue */
+.language-dropdown select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('data:image/svg+xml;charset=UTF-8,%3Csvg fill="%23ffffff" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M7 10l5 5 5-5z" /%3E%3Cpath d="M0 0h24v24H0z" fill="none" /%3E%3C/svg%3E');
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    padding-right: 30px;
+}
+
+.language-dropdown select::-ms-expand {
+    display: none;
+}
+
+/* Style pour l'option sélectionnée */
+.language-dropdown select option:checked {
+    background-color: #FF8C00; /* Nouvelle couleur orange pour l'option sélectionnée */
+    color: #fff;
+}
+
+/* Style de l'intérieur du menu déroulant */
+.language-dropdown select {
+    background-color: #000;
+}
+
+/* Style des options à l'intérieur du menu déroulant */
+.language-dropdown select option {
+    background-color: #000;
+}

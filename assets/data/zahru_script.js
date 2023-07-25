@@ -289,7 +289,7 @@ if (!localStorage.getItem('firstVisit')) {
   <div>
   <div>
   <a id="textzahru">ZahRu</a>
-  <img class="hi-hand" src="assets/other/wave-hello.gif" alt="wave-hello" onclick="toggleMenu()">
+  <img class="hi-hand" src="assets/img/zahru/zahru_wave-hello.gif" alt="wave-hello" onclick="toggleMenu()">
   <br>
   <div class="select">
   <select id="langSelect" onchange="changeLang(this.value)">
@@ -334,7 +334,7 @@ if (!localStorage.getItem('firstVisit')) {
   </div>
   </div>
   <br>
-  
+
   <button class="button is-medium" onclick="welcomsaver()">⇾ 💾 ⇽</button>
   </div>
   `;

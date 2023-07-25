@@ -2,8 +2,8 @@
 <html>
 <head>
     <title>Miphonya.ch - About Me</title>
-    <script src="script.js" defer></script>
-    <link rel="stylesheet" href="style.css">
+    <script src="assets/data/index_script.js" defer></script>
+    <link rel="stylesheet" href="assets/data/index_style.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌙</text></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,22 +14,32 @@
 <body>
 
     <div class="background">
+
+      <div class="language-selector">
+              <select id="language-select" onchange="changeLanguage()">
+                  <option value="en">💂‍♀️ English</option>
+                  <option value="fr">🥖 Français</option>
+              </select>
+              <a href="https://www.miphonya.ch/about">
+                  <button class="tab-button">🛈</button>
+              </a>
+          </div>
+
         <div class="container2">
             <div class="profile">
-                <img id="me" class="is-centered" src="assets/img/me.png">
+                <img id="me" class="is-centered" src="assets/img/index/me.png">
                 <div class="bocal">
-                    <div class="miphonyaTT"> About Me </div>
+                    <div id="abme" class="miphonyaTT"> About Me </div>
                     <div class="personal-info">
-                        <p><span>🎂</span> Age: +18</p>
-                        <p><span>💼</span> Occupation: IT Professional & Developer</p>
-                        <p><span>🔎</span> Interests: New technologies and IT</p>
-                        <p><span>🌍</span> Location: Switzerland</p>
-                        <p><span>🖥️</span> Skills: HTML5, CSS3, JavaScript, Java, C#, and eating coconuts</p>
-                        <p><span>📢</span> Languages: French (with sign language), English, Deutsch</p>
-                        <p><span>📧</span> Contact: public@miphoya.ch (No SPAM please)</p>
-                        <p><span>🎲</span> Hobbies: Dungeons and Dragons, Video Games, Achievement Hunting, Computing</p>
-                        <p><span>🎮</span> Favorite Video Games: Bad End Theater, OneShot, DDLC+, Baldur's Gate 3, and Subnautica</p>
-                        <p><span>📺</span> Favorite TV Shows/Movies: The Alien franchise and Shadows House</p>
+                        <p id="age"><span></span>🎂 Age: +18</p>
+                        <p id="occupation"><span></span>💼 Occupation: IT Professional & Developer</p>
+                        <p id="interests"><span></span>🔎 Interests: New technologies and IT</p>
+                        <p id="location" ><span></span>🌍 Location: Switzerland</p>
+                        <p id="skills"><span></span>🖥️ Skills: HTML5, CSS3, JavaScript, Java, C#, and eating coconuts</p>
+                        <p id="languages"><span></span>📢 Languages: French (with sign language), English, Deutsch</p>
+                        <p id="hobbies"><span></span>🎲 Hobbies: Dungeons and Dragons, Video Games, Achievement Hunting, Computing</p>
+                        <p id="favgames"><span></span>🎮 Favorite Video Games: Bad End Theater, OneShot, DDLC+, Baldur's Gate 3, and Subnautica</p>
+                        <p id="favtvmov"><span></span>📺 Favorite Series/Movies: The Alien franchise and Shadows House</p>
                     </div>
                 </div>
                 <!-- Add social icons here -->
@@ -38,28 +48,31 @@
                     <a href="https://discord-profile-link" target="_blank"><i class="fab fa-discord"></i></a>
                     <a href="https://github.com/Miphonya" target="_blank"><i class="fab fa-github"></i></a>
 										<a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">
-										<img src="assets/img/roll.png" alt="Rickroll Image" width="24" height="24">
+										<img src="assets/img/index/roll.png" alt="Rickroll Image" width="24" height="24">
 									</a>
                 </div>
             </div>
             <div class="portfolio">
                 <div class="project-card">
                     <h2>ZahRu</h2>
-                    <p>Zahru is basically a new tab/start page, which I created in my spare time to get my hands on JS.</p>
-                    <a href="https://www.miphonya.ch/zahru/index.html">
-                        <button class="portfolio-button">View Project</button>
+                    <p id="zahrutext"><span></span>Zahru is basically a new tab/start page, which I created in my spare time to get my hands on JS.</p>
+                    <a href="https://www.miphonya.ch/ZahRu">
+                        <button id="btnzahru" class="portfolio-button">View Project</button>
                     </a>
                 </div>
                 <div class="project-card">
-                    <h2>D&D 5e Tools</h2>
-                    <p>Soon...</p>
-                    <a href="https://github.com/Miphonya">
-                        <button class="portfolio-button">View Project</button>
+                    <h2 id="dndprojname">D&D 5e Tools</h2>
+                    <p id="dndtext"><span></span>As the name suggests, this project gathers several small tools that I have developed to assist myself as a player or game master in my role-playing game sessions.</p>
+                    <a href="https://www.miphonya.ch/DndNameGen">
+                        <button id="btndndname" class="portfolio-button">Names generator</button>
+                    </a>
+                    <a href="https://www.github.com/miphonya">
+                        <button id="Soon" class="portfolio-button">Soon...</button>
                     </a>
                 </div>
 
 
-                <!-- Add more projects here if necessary -->
+                <!-- I need to add more projects here if necessary -->
             </div>
         </div>
     </div>
