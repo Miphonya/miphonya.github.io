@@ -27,7 +27,7 @@ html {
 
 h1 {
     text-align: center;
-    background-color: #FF8C00; /* Nouvelle couleur orange */
+    background-color: #e91e63; /* Nouvelle couleur rose vif */
     color: #fff;
     padding: 10px;
     margin-bottom: 20px;
@@ -50,7 +50,7 @@ h1 {
 .race-button {
     font-size: 16px;
     padding: 10px 20px;
-    background-color: #FF8C00; /* Nouvelle couleur orange */
+    background-color: #e91e63; /* Nouvelle couleur rose vif */
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -60,13 +60,13 @@ h1 {
 }
 
 .race-button.active {
-    background-color: #FF4500; /* Couleur orange plus foncée pour le bouton sélectionné */
-    border: 2px solid #FF4500; /* Bordure plus épaisse pour mettre en évidence */
-    box-shadow: 0 0 10px rgba(255, 165, 0, 0.6); /* Ombre pour mettre en évidence */
+    background-color: #c2185b; /* Couleur rose vif plus foncée pour le bouton sélectionné */
+    border: 2px solid #c2185b; /* Bordure plus épaisse pour mettre en évidence */
+    box-shadow: 0 0 10px rgba(233, 30, 99, 0.6); /* Ombre pour mettre en évidence */
 }
 
 .race-button:hover {
-    background-color: #FF4500; /* Couleur orange plus foncée au survol */
+    background-color: #c2185b; /* Couleur rose vif plus foncée au survol */
 }
 
 label {
@@ -78,7 +78,7 @@ input[type="number"] {
     font-size: 16px;
     padding: 10px;
     margin-bottom: 20px;
-    border: 2px solid #FF8C00; /* Nouvelle couleur orange pour le cadre */
+    border: 2px solid #e91e63; /* Nouvelle couleur rose vif pour le cadre */
     border-radius: 5px;
     width: 80px;
 }
@@ -86,7 +86,7 @@ input[type="number"] {
 .rungen {
     font-size: 16px;
     padding: 10px 20px;
-    background-color: #FF8C00; /* Nouvelle couleur orange */
+    background-color: #e91e63; /* Nouvelle couleur rose vif */
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -95,7 +95,7 @@ input[type="number"] {
 }
 
 .rungen:hover {
-    background-color: #FF4500; /* Couleur orange plus foncée au survol */
+    background-color: #c2185b; /* Couleur rose vif plus foncée au survol */
 }
 
 .names-list {
@@ -112,7 +112,7 @@ input[type="number"] {
 /*---------------------------------------------------------------------------------------------------------------------------------------------------*/
 
 .tab-button {
-    background-color: #FF8C00; /* Nouvelle couleur orange */
+    background-color: #e91e63; /* Nouvelle couleur rose vif */
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -166,7 +166,7 @@ input[type="number"] {
 
 /* Style pour l'option sélectionnée */
 .language-dropdown select option:checked {
-    background-color: #FF8C00; /* Nouvelle couleur orange pour l'option sélectionnée */
+    background-color: #e91e63; /* Nouvelle couleur rose vif pour l'option sélectionnée */
     color: #fff;
 }
 

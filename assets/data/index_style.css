@@ -4,6 +4,7 @@ html, body {
     margin: 0;
     padding: 0;
     backdrop-filter: blur(5px);
+    font-family: 'Ubuntu' sans-serif;
 }
 
 html {
@@ -82,10 +83,12 @@ html {
     color: #fff; /* Couleur du texte en blanc */
 }
 
+/* Styles pour les boutons */
+/* Styles pour les boutons */
 .portfolio-button {
     width: 100%;
     padding: 10px 0;
-    background-color: #FF8C00; /* Nouvelle couleur orange */
+    background-color: #e91e63; /* Nouvelle couleur rose vif */
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -93,12 +96,12 @@ html {
     transition: background-color 0.3s;
     margin-top: 5px;
     margin-bottom: 5px;
-
 }
 
 .portfolio-button:hover {
-    background-color: #FF4500; /* Couleur orange plus foncée au survol */
+    background-color: #c2185b; /* Couleur rose plus foncée au survol */
 }
+
 
 .personal-info {
     margin-top: 20px;
@@ -124,9 +127,8 @@ html {
     justify-content: center;
     align-items: center;
     color: #fff; /* Couleur du texte en blanc */
-    font-size: 20px; /* Réduire la taille du texte */
+    font-size: 30px; /* Réduire la taille du texte */
     position: relative; /* pour que le conteneur soit la référence de position */
-    font-family: 'Ubuntu', sans-serif;
 }
 
 .social-icons {
@@ -140,7 +142,7 @@ html {
 }
 /*-------------------------------------------------------------------------------------------------------------------------*/
 .tab-button {
-    background-color: #FF8C00; /* Nouvelle couleur orange */
+    background-color: #e91e63; /* Nouvelle couleur orange */
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -162,7 +164,6 @@ html {
     left: 10px; /* Ajuster la position à gauche pour le coin supérieur gauche */
     z-index: 2;
     color: #fff;
-    font-family: 'Ubuntu', sans-serif;
 }
 
 .language-selector label {
@@ -194,7 +195,7 @@ html {
 
 /* Style pour l'option sélectionnée */
 .language-selector select option:checked {
-    background-color: #FF8C00; /* Nouvelle couleur orange pour l'option sélectionnée */
+    background-color: #e91e63; /* Nouvelle couleur orange pour l'option sélectionnée */
     color: #fff;
 }
 
@@ -215,44 +216,92 @@ html {
 
 /* Media Queries pour rendre le site responsive */
 
+/* Styles généraux */
+
+/* Existing styles as previously mentioned */
+
+/* Media Queries pour rendre le site responsive */
+
 /* Pour les appareils où la hauteur est plus grande que la largeur */
 @media screen and (orientation: portrait) {
+    /* Reset background size to cover */
     html {
-        background-size: auto; /* Changez la taille de l'arrière-plan pour s'adapter à l'écran plus petit */
+        background-size: cover;
     }
 
+    /* Remove fixed positioning for the background */
+    .background {
+        position: static;
+    }
+
+    /* Adjust margins and paddings for better spacing */
     .container2 {
-        flex-direction: column; /* Pour afficher les éléments en colonnes plutôt qu'en ligne */
-        justify-content: center; /* Centrer le contenu verticalement */
-        align-items: center; /* Centrer le contenu horizontalement */
+        flex-direction: column; /* Display elements in a single column */
+        justify-content: center; /* Center the content vertically */
+        align-items: center; /* Center the content horizontally */
     }
 
-    .profile, .portfolio, .project-card {
-        flex-basis: 100%; /* Tous les éléments prennent la largeur complète */
-        margin: 0; /* Supprimez les marges pour occuper toute la largeur */
+    .profile, .portfolio {
+        width: 100%; /* Make elements occupy the full width */
+        margin: 15px; /* Add some spacing between elements */
+        padding: 20px; /* Adjust padding for better spacing */
     }
 
     .project-card {
-        margin-left: 0; /* Supprimez la marge à gauche pour centrer les cartes */
+        flex-basis: 100%; /* Each project card takes the full width of the container */
+        margin: 15px; /* Add spacing between project cards */
+        padding: 20px; /* Adjust padding for better spacing */
     }
 
-    /* Ajustements pour le texte du profil */
-    .is-centered {
-        width: 100%;
+    /* Adjust font size for better readability on mobile */
+    body {
+        font-size: 36px; /* Increase base font size for better readability */
     }
 
-    .miphonyaTT {
-        font-size: 18px; /* Ajustez la taille du texte pour l'écran plus petit */
+    .project-card h2 {
+        font-size: 40px; /* Increase heading font size for better readability */
     }
 
-    /* Ajustements pour les icônes de médias sociaux */
+    .project-card p {
+        font-size: 34px; /* Increase paragraph font size for better readability */
+    }
+
+    .personal-info p {
+        font-size: 34px; /* Increase personal info font size for better readability */
+    }
+
+    /* Increase font size for the "About" button */
+    .portfolio-button {
+        font-size: 42px;
+        padding: 15px 0;
+    }
+
+    /* Adjust size and margins for social icons */
     .social-icons {
-        text-align: center; /* Centrer les icônes */
-        margin: 20px 0; /* Ajouter une marge en haut et en bas pour l'espacement */
+        text-align: center;
+        margin: 30px 0;
     }
 
     .social-icons a {
-        display: block; /* Afficher les icônes en bloc pour les centrer */
-        margin: 10px auto; /* Centrer les icônes horizontalement */
+        font-size: 46px; /* Increase social icon size for better visibility */
+        margin: 15px;
+    }
+
+    /* Reset font size for the language selector label */
+    .language-selector label {
+        font-size: initial;
+    }
+
+    /* Increase font size for the language selector options */
+    .language-selector select {
+        font-size: 38px;
+    }
+
+    .tab-button {
+      font-size: 40px;
+    }
+
+    .miphonyaTT {
+      font-size: 60px;
     }
 }
