@@ -82,3 +82,12 @@ const translations = {
 
        // Event listener to change the language when the dropdown is modified
        select.addEventListener('change', changeLanguage);
+
+//------------------------------------------------------------------------------------------------------------------
+function refreshIframe() {
+           var iframe = document.getElementById('iframeSta');
+           iframe.src = iframe.src; // Recharge l'iframe en réaffectant la même URL
+       }
+
+       // Rafraîchissement toutes les 10 secondes (10000 millisecondes)
+       setInterval(refreshIframe, 1000);
