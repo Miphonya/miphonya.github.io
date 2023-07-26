@@ -209,7 +209,9 @@ html {
     background-color: #000;
 }
 
-
+.currentforphonemessage {
+  visibility: hidden;
+}
 
 
 /*-------------------------------------------------------------------------------------------------------------------------*/
@@ -304,4 +306,20 @@ html {
     .miphonyaTT {
       font-size: 60px;
     }
+
+    iframe {
+      display: none;
+    }
+   .currentforphonemessage {
+     visibility: visible; /* Rendre le message visible */
+     padding: 20px;
+   background-color: rgba(0, 0, 0, 0.7); /* Fond sombre transparent */
+   backdrop-filter: blur(10px); /* Flou de l'arrière-plan */
+   border-radius: 10px;
+   box-shadow: 0 0 10px rgba(255, 255, 255, 0.2); /* Ombre portée */
+   border: 1px solid rgba(255, 255, 255, 0.3); /* Bordure claire */
+   margin-top: 20px;
+   text-align: center;
+   color: #fff;
+   }
 }
