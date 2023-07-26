@@ -11,6 +11,8 @@ const translations = {
              favgames: "🎮 Favorite Video Games: Bad End Theater, OneShot, DDLC+, Baldur's Gate 3, and Subnautica",
              favtvmov: "📺 Favorite Series/Movies: The Alien franchise and Shadows House",
 
+             tradcurrentforphonemessage:"I'm sorry, but you can see what I'm currently doing only in landscape mode... <br><br> 👩🏼‍💻+👾=😁",
+
              zahrutext: "Zahru is basically a new tab/start page for web browser, which I created in my spare time to get my hands on JS.",
              btnzahru: "View Project",
 
@@ -34,6 +36,8 @@ const translations = {
              favgames: "🎮 Jeux vidéo préférés : Bad End Theater, OneShot, DDLC+, Baldur's Gate 3 et Subnautica",
              favtvmov: "📺 Séries/Films préférés : La franchise Alien et Shadows House",
 
+             tradcurrentforphonemessage:"Je suis désolé, mais vous ne pouvez voir ce que je fais actuellement qu'en mode paysage... <br><br> 👩🏼‍💻+👾=😁",
+
              zahrutext: "Zahru est essentiellement une nouvelle page d'acceuil / page de démarrage de navigateur web que j'ai créée pendant mon temps libre pour me familiariser avec JS.",
              btnzahru: "Voir le projet",
 
@@ -46,29 +50,35 @@ const translations = {
        };
 
        function changeLanguage() {
-        const select = document.getElementById('language-select');
-        const selectedLanguage = select.value;
+           const select = document.getElementById('language-select');
+           const selectedLanguage = select.value;
 
-        // Obtenir tous les éléments qui doivent être traduits
-        const elements = document.querySelectorAll('.personal-info p, .project-card h2, .project-card p, .portfolio-button');
+           // Get all elements that need to be translated
+           const elements = document.querySelectorAll('.personal-info p, .project-card h2, .project-card p, .portfolio-button');
 
-        // Mettre à jour le contenu en fonction de la langue sélectionnée
-        elements.forEach((element) => {
-          const id = element.id;
-          if (translations[selectedLanguage][id]) {
-            element.textContent = translations[selectedLanguage][id];
-          }
-        });
+           // Update the content based on the selected language
+           elements.forEach((element) => {
+               const id = element.id;
+               if (translations[selectedLanguage][id]) {
+                   element.textContent = translations[selectedLanguage][id];
+               }
+           });
 
-        // Mettre à jour le titre de l'onglet du navigateur avec la langue sélectionnée
-        document.title = `Miphonya.ch - ${translations[selectedLanguage]["abme"]}`;
-      }
+           // Update the title of the browser tab with the selected language
+           document.title = `Miphonya.ch - ${translations[selectedLanguage]["abme"]}`;
 
-      // Définir la langue par défaut en fonction de la langue du navigateur
-      const defaultLanguage = navigator.language.slice(0, 2); // Obtenir les deux premières lettres du code de langue
-      const select = document.getElementById('language-select');
-      select.value = defaultLanguage;
-      changeLanguage(); // Mettre à jour le contenu en fonction de la langue par défaut
+           // Update the 'tradcurrentforphonemessage' element with the translated content
+           const tradcurrentforphonemessageElement = document.getElementById('tradcurrentforphonemessage');
+           if (translations[selectedLanguage]['tradcurrentforphonemessage']) {
+               tradcurrentforphonemessageElement.innerHTML = translations[selectedLanguage]['tradcurrentforphonemessage'];
+           }
+       }
 
-      // Écouteur d'événements pour changer de langue lorsque la liste déroulante est modifiée
-      select.addEventListener('change', changeLanguage);
+       // Set the default language based on the language of the browser
+       const defaultLanguage = navigator.language.slice(0, 2); // Get the first two letters of the language code
+       const select = document.getElementById('language-select');
+       select.value = defaultLanguage;
+       changeLanguage(); // Update the content based on the default language
+
+       // Event listener to change the language when the dropdown is modified
+       select.addEventListener('change', changeLanguage);
