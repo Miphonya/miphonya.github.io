@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" id="html">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>D&D Name Generator</title>
+  <link rel="stylesheet" href="assets/data/dndname_style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>D&D Name Generator</h1>
+    <div class="generator">
+      <div class="race-buttons">
+        <button class="race-button" data-race="elfe">Elfe</button>
+        <button class="race-button" data-race="nain">Nain</button>
+        <button class="race-button" data-race="humain">Humain</button>
+        <button class="race-button" data-race="orc">Orc</button>
+        <button class="race-button" data-race="halfelin">Halfelin</button>
+        <button class="race-button" data-race="goliath">Goliath</button>
+        <button class="race-button" data-race="gnome">Gnome</button>
+        <button class="race-button" data-race="aarakocra">Aarakocra</button>
+        <button class="race-button" data-race="thiefling">Thiefling</button>
+        <!-- Ajoutez d'autres boutons pour les autres races -->
+      </div>
+      <label for="number-of-names">Number of name to generate (1-5:</label>
+      <input type="number" id="number-of-names" min="1" max="5" value="1">
+      <button class="rungen" onclick="generateNames()">Générer les noms</button>
+      <div class="names-list" id="names-list">...</div>
+    </div>
+  </div>
+
+
+  <div class="language-dropdown" id="language-dropdown">
+  <select id="language-selector" onchange="changeLanguage()">
+    <option value="fr">🥖Français</option>
+    <option value="en">💂‍♀️English</option>
+  </select>
+    <a href="https://www.miphonya.ch/about">
+      <button class="tab-button">🛈</button>
+    </a>
+    <a href="https://www.miphonya.ch">
+      <button class="tab-button"><</button>
+    </a>
+  </div>
+
+
+  <script src="assets/data/dndname_script.js"></script>
+</body>
+</html>
