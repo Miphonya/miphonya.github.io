@@ -210,7 +210,7 @@ html {
 }
 
 .currentforphonemessage {
-  visibility: hidden;
+  display: none;
 }
 
 
@@ -311,7 +311,7 @@ html {
       display: none;
     }
    .currentforphonemessage {
-     visibility: visible; /* Rendre le message visible */
+    display: block; /* Rendre le message visible */
      padding: 20px;
    background-color: rgba(0, 0, 0, 0.7); /* Fond sombre transparent */
    backdrop-filter: blur(10px); /* Flou de l'arrière-plan */
