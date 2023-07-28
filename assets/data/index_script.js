@@ -7,7 +7,7 @@ const translations = {
              location: "🌍 Location: Switzerland",
              skills: "🖥️ Skills: HTML5, CSS3, JavaScript, Java, C#, and eating coconuts",
              languages: "📢 Languages: French (with sign language), English",
-             hobbies: "🎲 Hobbies: Dungeons and Dragons, Video Games, Achievement Hunting, Computing",
+             hobbies: "🎲 Hobbies: Dungeons and Dragons, Video Games, Airsoft, Computing",
              favgames: "🎮 Favorite Video Games: Bad End Theater, OneShot, DDLC+, Baldur's Gate 3, and Subnautica",
              favtvmov: "📺 Favorite Series/Movies: The Alien franchise and Shadows House",
 
@@ -32,7 +32,7 @@ const translations = {
              location: "🌍 Lieu : Suisse",
              skills: "🖥️ Compétences : HTML5, CSS3, JavaScript, Java, C# et manger des noix de coco",
              languages: "📢 Langues : Français (avec langue des signes), Anglais",
-             hobbies: "🎲 Loisirs : Donjons et Dragons, Jeux vidéo, Informatique",
+             hobbies: "🎲 Loisirs : Donjons et Dragons, Jeux vidéo, Airsoft, Informatique",
              favgames: "🎮 Jeux vidéo préférés : Bad End Theater, OneShot, DDLC+, Baldur's Gate 3 et Subnautica",
              favtvmov: "📺 Séries/Films préférés : La franchise Alien et Shadows House",
 
