@@ -8,7 +8,7 @@ const translations = {
              skills: "🖥️ Skills: HTML5, CSS3, JavaScript, Java, C#, and eating coconuts",
              languages: "📢 Languages: French (with sign language), English",
              hobbies: "🎲 Hobbies: Dungeons and Dragons, Video Games, Airsoft, Computing",
-             favgames: "🎮 Favorite Video Games: Bad End Theater, OneShot, DDLC+, Baldur's Gate 3, and Subnautica",
+             favgames: "🎮 Favorite Video Games: Bad End Theater, OneShot, DDLC+, Splatoon, and Subnautica",
              favtvmov: "📺 Favorite Series/Movies: The Alien franchise and Shadows House",
 
              tradcurrentforphonemessage:"I'm sorry, but you can see what I'm currently doing only in landscape mode... <br><br> 👩🏼‍💻+👾=😁",
@@ -33,7 +33,7 @@ const translations = {
              skills: "🖥️ Compétences : HTML5, CSS3, JavaScript, Java, C# et manger des noix de coco",
              languages: "📢 Langues : Français (avec langue des signes), Anglais",
              hobbies: "🎲 Loisirs : Donjons et Dragons, Jeux vidéo, Airsoft, Informatique",
-             favgames: "🎮 Jeux vidéo préférés : Bad End Theater, OneShot, DDLC+, Baldur's Gate 3 et Subnautica",
+             favgames: "🎮 Jeux vidéo préférés : Bad End Theater, OneShot, DDLC+, Splatoon et Subnautica",
              favtvmov: "📺 Séries/Films préférés : La franchise Alien et Shadows House",
 
              tradcurrentforphonemessage:"Je suis désolé, mais vous ne pouvez voir ce que je fais actuellement qu'en mode paysage... <br><br> 👩🏼‍💻+👾=😁",
