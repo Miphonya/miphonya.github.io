@@ -22,6 +22,9 @@ const translations = {
 
              soon: "Soon...",
 
+             gentool: "General Tools",
+             gentooltext: "As the name suggests, this project gathers several small tools for many things",
+             btntoolpassword: "Password generator",
 
            },
            fr: {
@@ -46,6 +49,10 @@ const translations = {
              btndndname: "Générateur de noms",
 
              soon: "Bientôt...",
+
+             gentool: "Outils en tout genre",
+             gentooltext: "Comme son nom l'indique, ce projet regroupe plusieurs petits outils pour de nombreuses choses.",
+             btntoolpassword: "Générateur de mot de passe",
            },
        };
 

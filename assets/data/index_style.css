@@ -83,6 +83,13 @@ html {
     color: #fff; /* Couleur du texte en blanc */
 }
 
+#iframeSta {
+   width: 150%;
+   height: 100%;
+}
+
+
+
 /* Styles pour les boutons */
 /* Styles pour les boutons */
 .portfolio-button {
@@ -140,6 +147,8 @@ html {
     font-size: 24px;
     margin-right: 10px;
 }
+
+
 /*-------------------------------------------------------------------------------------------------------------------------*/
 .tab-button {
     background-color: #e91e63; /* Nouvelle couleur orange */
@@ -311,8 +320,8 @@ html {
       display: none;
     }
    .currentforphonemessage {
-    display: block; /* Rendre le message visible */
-     padding: 20px;
+  display: block; /* Rendre le message visible */
+   padding: 20px;
    background-color: rgba(0, 0, 0, 0.7); /* Fond sombre transparent */
    backdrop-filter: blur(10px); /* Flou de l'arrière-plan */
    border-radius: 10px;
