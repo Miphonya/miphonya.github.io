@@ -45,7 +45,6 @@ html {
 }
 
 .bocal {
-    padding: 20px;
     background-color: rgba(0, 0, 0, 0.7); /* Fond sombre transparent */
     backdrop-filter: blur(10px); /* Flou de l'arrière-plan */
     border-radius: 10px;
@@ -84,8 +83,7 @@ html {
 }
 
 #iframeSta {
-   width: 150%;
-   height: 100%;
+   width: 63%;
 }
 
 
@@ -111,7 +109,7 @@ html {
 
 
 .personal-info {
-    margin-top: 20px;
+    margin-top: 10px;
     text-align: center;
 }
 
@@ -319,6 +317,7 @@ html {
     iframe {
       display: none;
     }
+
    .currentforphonemessage {
   display: block; /* Rendre le message visible */
    padding: 20px;
