@@ -233,7 +233,7 @@ const resolutionSelect = document.getElementById('resolutionSelect');
 const savedResolution = localStorage.getItem('resolution');
 
 // Initialisation de la résolution de l'image avec la valeur sauvegardée ou la valeur par défaut
-let imageResolution = localStorage.getItem('imageResolution') || "http://source.unsplash.com/1920x1080/?";
+// let imageResolution = localStorage.getItem('imageResolution') || "http://source.unsplash.com/1920x1080/?";
 
 // Si un choix a été sauvegardé, on restaure la valeur sélectionnée
 if (savedResolution) {
@@ -289,7 +289,7 @@ if (!localStorage.getItem('firstVisit')) {
   <div>
   <div>
   <a id="textzahru">ZahRu</a>
-  <img class="hi-hand" src="assets/img/zahru/zahru_wave-hello.gif" alt="wave-hello" onclick="toggleMenu()">
+  <img class="hi-hand" src="assets/other/wave-hello.gif" alt="wave-hello" onclick="toggleMenu()">
   <br>
   <div class="select">
   <select id="langSelect" onchange="changeLang(this.value)">
@@ -335,6 +335,12 @@ if (!localStorage.getItem('firstVisit')) {
   </div>
   <br>
 
+  <div>
+  <label for="checkbox1"><input type="checkbox" id="checkbox1"> </label>
+  <a id=termsofuse href="legal/conditionutil.html">TERMS OF USE</a>
+  <p id=looklikeA> AND </p>
+  <a id=dataprot href="legal/protectdonne.html">DATA PRIVACY</a>
+  </div>
   <button class="button is-medium" onclick="welcomsaver()">⇾ 💾 ⇽</button>
   </div>
   `;
@@ -348,7 +354,7 @@ if (!localStorage.getItem('firstVisit')) {
   //  alert("Merci de visiter notre site à nouveau.");
 
   // Définir l'image de fond par défaut
-  var defaultImage = "http://source.unsplash.com/1920x1080/?";
+ var defaultImage = "http://source.unsplash.com/1920x1080/?";
 
   function changerImage() {
     var nouvelleImage = document.getElementById("urlImage").value;
@@ -385,12 +391,28 @@ if (!localStorage.getItem('firstVisit')) {
 
 // -----------------------------------------------------  welcomsaver -----------------------------------------------------
 function welcomsaver() {
+  var checkbox1 = document.getElementById("checkbox1");
+  var dataprot = document.getElementById("dataprot");
+  var termsofuse = document.getElementById("termsofuse");
+  var looklikeA = document.getElementById("looklikeA");
   var square = document.getElementById("square"); // Ajout d'une variable pour récupérer l'élément à masquer
+
+  if (checkbox1.checked) {
     // Enregistrer la visite de l'utilisateur dans le stockage local
     localStorage.setItem("firstVisit", true);
     // Fait disparaitre le carré de bienvenue
     square.style.display = "none";
-
+  } else {
+    // Les deux checkboxes ne sont pas cochées, on affiche un message d'erreur
+    dataprot.style.color = "red";
+    termsofuse.style.color = "red";
+    looklikeA.style.color = "red";
+    setTimeout(() => {
+      dataprot.style.color = "";
+      termsofuse.style.color = "";
+      looklikeA.style.color = "";
+    }, 500);
+  }
 }
 
 
