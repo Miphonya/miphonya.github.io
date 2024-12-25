@@ -38,13 +38,23 @@
 
             sum += modifier;
 
-            // Formatage du résultat pour le JSON et la table
-            const rollsTable = rolls.map((roll, index) => ({ roll: roll, sum: index === rolls.length - 1 ? sum : null }));
+            // Créer un tableau ASCII pour afficher les résultats
+            const rollsStr = rolls.join(' ');
+            const sumStr = `[${sum}]`;
+            const asciiTable = `
+╔════════════════════╗
+║       ${diceExpression}       ║
+╠═════════════╤══════╣
+║    rolls    │ sum  ║
+╟─────────────┼──────╢
+║ ${rollsStr} │ ${sumStr} ║
+╚═════════════╧══════╝
+            `;
 
             return {
                 output: {
                     expression: diceExpression,
-                    rollsTable: rollsTable,
+                    rollsTable: asciiTable,
                     sum: sum
                 }
             };
