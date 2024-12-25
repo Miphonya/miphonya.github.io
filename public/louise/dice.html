@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en, fr">
+<head>
+    <title>Dice Roller - Miphonya</title>
+    <meta property="og:title" content="Dice Roller - Miphonya" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta property="twitter:card" content="summary_large_image" />
+
+    <style data-tag="reset-style-sheet">
+      html {  line-height: 1.15;}body {  margin: 0;}* {  box-sizing: border-box;  border-width: 0;  border-style: solid;}p,li,ul,pre,div,h1,h2,h3,h4,h5,h6,figure,blockquote,figcaption {  margin: 0;  padding: 0;}button {  background-color: transparent;}button,input,optgroup,select,textarea {  font-family: inherit;  font-size: 100%;  line-height: 1.15;  margin: 0;}button,select {  text-transform: none;}button,[type="button"],[type="reset"],[type="submit"] {  -webkit-appearance: button;}button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner {  border-style: none;  padding: 0;}button:-moz-focus,[type="button"]:-moz-focus,[type="reset"]:-moz-focus,[type="submit"]:-moz-focus {  outline: 1px dotted ButtonText;}a {  color: inherit;  text-decoration: inherit;}input {  padding: 2px 4px;}img {  display: block;}html { scroll-behavior: smooth  }
+    </style>
+    <style data-tag="default-style-sheet">
+      html {
+        font-family: Open Sans;
+        font-size: 1rem;
+      }
+
+      body {
+          margin: 0;
+          padding: 0;
+          font-family: 'Arial', sans-serif;
+          background: linear-gradient(135deg, #e0c6ff, #ff99cc, #ffe6ff); /* Dégradé violet pâle et rose */
+          background-size: 400% 400%;
+          height: 100vh;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+          overflow: hidden;
+          animation: gradientShift 10s infinite linear;
+      }
+
+      .prog-container3 {
+          background-color: white;
+          border-radius: 8px;
+          padding: 20px;
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+          width: 80%;
+          max-width: 600px;
+      }
+
+      table {
+          width: 100%;
+          border-collapse: collapse;
+          margin: 20px auto;
+          background: #34495e;
+          color: #ecf0f1;
+      }
+
+      th, td {
+          border: 1px solid #7f8c8d;
+          padding: 8px;
+          text-align: center;
+      }
+
+      th {
+          background-color: #e67e22;
+          color: white;
+      }
+
+      tfoot td {
+          font-weight: bold;
+          background-color: #16a085;
+      }
+
+      .button {
+          display: inline-block;
+          margin-top: 20px;
+          padding: 10px 20px;
+          font-size: 16px;
+          color: #ffffff;
+          background-color: #2980b9;
+          border: none;
+          border-radius: 5px;
+          text-decoration: none;
+          cursor: pointer;
+      }
+
+      .button:hover {
+          background-color: #3498db;
+      }
+
+      footer {
+          margin-top: 20px;
+          font-size: 14px;
+      }
+
+      @keyframes gradientShift {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+      }
+    </style>
+</head>
+<body>
+    <div class="prog-container3">
+        <h1>Dice Roller</h1>
+        <p id="error" style="color: red;"></p>
+        <table id="results" style="display: none;">
+            <thead>
+                <tr>
+                    <th>Roll</th>
+                    <th>Result</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td>Total</td>
+                    <td id="total">0</td>
+                </tr>
+            </tfoot>
+        </table>
+
+        <a href="https://www.miphonya.ch" class="button">Visit Miphonya</a>
+
+        <footer>Beta 0.1.0</footer>
+    </div>
+
+    <script>
+        function parseDiceNotation(notation) {
+            const regex = /^\d+d\d+$/i;
+            const match = notation.match(regex);
+            if (!match) return null;
+
+            const [rolls, sides] = notation.split('d').map(Number);
+            if (rolls <= 0 || sides <= 0) return null;
+            return { rolls, sides };
+        }
+
+        function rollDice(rolls, sides) {
+            const results = [];
+            for (let i = 0; i < rolls; i++) {
+                results.push(Math.floor(Math.random() * sides) + 1);
+            }
+            return results;
+        }
+
+        function displayResults(results) {
+            const table = document.getElementById('results');
+            const tbody = table.querySelector('tbody');
+            const totalCell = document.getElementById('total');
+            tbody.innerHTML = '';
+
+            let total = 0;
+            results.forEach((result, index) => {
+                const row = document.createElement('tr');
+                const cellRoll = document.createElement('td');
+                const cellResult = document.createElement('td');
+
+                cellRoll.textContent = index + 1;
+                cellResult.textContent = result;
+                total += result;
+
+                row.appendChild(cellRoll);
+                row.appendChild(cellResult);
+                tbody.appendChild(row);
+            });
+
+            totalCell.textContent = total;
+            table.style.display = 'table';
+        }
+
+        function main() {
+            const params = new URLSearchParams(window.location.search);
+            const dice = params.get('dice');
+
+            if (!dice) {
+                document.getElementById('error').textContent = 'No dice notation found in the URL.';
+                return;
+            }
+
+            const parsed = parseDiceNotation(dice);
+
+            if (!parsed) {
+                document.getElementById('error').textContent = 'Invalid dice notation. Use format XdY (e.g., 1d100, 4d6).';
+                return;
+            }
+
+            const { rolls, sides } = parsed;
+            const results = rollDice(rolls, sides);
+            displayResults(results);
+        }
+
+        window.onload = main;
+    </script>
+</body>
+</html>
