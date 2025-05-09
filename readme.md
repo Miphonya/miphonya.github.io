@@ -1,0 +1,1 @@
+# This content is protected by copyright. Anything not explicitly under a specific license is considered to be under the 'All Rights Reserved' license and cannot be reused without the author's prior permission.
