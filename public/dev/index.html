@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Prévisions Astro</title>
+
+  <link rel="stylesheet" href="styles.css" />
+  
+  <!-- Chart.js + Annotation Plugin -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.1.0/dist/chartjs-plugin-annotation.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Prévisions Astro</h1>
+    <button id="theme-toggle">🌙</button>
+  </header>
+
+<div id="location-search-container" style="position: relative; max-width: 400px;">
+  <input
+    id="location-search"
+    type="text"
+    placeholder="Rechercher un lieu..."
+    autocomplete="off"
+  />
+  <button id="use-location-btn" title="Utiliser ma localisation">📍</button>
+  <ul id="suggestions-list" class="suggestions-list"></ul>
+  <p id="coords-display" style="font-size: 0.8em; color: #666; margin-top: 4px; min-height: 18px;"></p>
+</div>
+
+
+  
+  <main>
+    <section id="current-weather">
+      <h2>Conditions actuelles</h2>
+      <div class="grid-current" id="current-data">
+        <!-- Données actuelles insérées par JS -->
+        <div class="current-cell">
+          <div>☁️ Nuage</div>
+          <div id="cloudcover-value">—</div>
+        </div>
+        <div class="current-cell">
+          <div>🔭 Seeing</div>
+          <div id="seeing-value">—</div>
+        </div>
+        <div class="current-cell">
+          <div>🌫️ Transparence</div>
+          <div id="transparency-value">—</div>
+        </div>
+        <div class="current-cell">
+          <div>💨 Vent</div>
+          <div id="wind-value">—</div>
+        </div>
+        <div class="current-cell">
+          <div>🌡️ Température</div>
+          <div id="temp-value">—</div>
+        </div>
+        <div class="current-cell">
+          <div>💧 Humidité</div>
+          <div id="humidity-value">—</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="charts-container">
+      <!-- Graphiques générés par JS -->
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
