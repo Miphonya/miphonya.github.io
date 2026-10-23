@@ -1,0 +1,42 @@
+{
+  "name": "sotm",
+  "private": true,
+  "version": "0.2.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "tsc -b && vite build",
+    "test": "vitest run",
+    "postinstall": "node scripts/prepare-ocr.mjs"
+  },
+  "dependencies": {
+    "@radix-ui/react-dialog": "^1.1.15",
+    "@tanstack/react-query": "^5.90.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "dexie": "^4.2.0",
+    "dexie-react-hooks": "^4.2.0",
+    "lucide-react": "^0.468.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-router-dom": "^7.9.0",
+    "tailwind-merge": "^3.3.0",
+    "tesseract.js": "^6.0.1",
+    "zod": "^4.1.0",
+    "zustand": "^5.0.8"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.1.0",
+    "@tesseract.js-data/eng": "^1.0.0",
+    "@tesseract.js-data/fra": "^1.0.0",
+    "@types/node": "^22.20.5",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
+    "@vitejs/plugin-react": "^5.0.0",
+    "fake-indexeddb": "^6.2.0",
+    "tailwindcss": "^4.1.0",
+    "typescript": "~5.9.2",
+    "vite": "^7.1.0",
+    "vitest": "^3.2.0"
+  }
+}
